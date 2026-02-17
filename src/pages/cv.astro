@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import { getCollection } from 'astro:content';
+import profileData from '../data/profile.json';
+import skillsData from '../data/skills.json';
+
+const experiences = await getCollection('experience');
+---
+
+<BaseLayout title="CV | Visvam Rajesh" description="Curriculum Vitae - Experience, education, and skills.">
+	<!-- Header with Download Button -->
+	<section
+		class="py-20 bg-gradient-to-br from-brand-blue/10 to-brand-blue-light/10 dark:from-brand-blue/5 dark:to-transparent"
+	>
+		<div class="container mx-auto px-4 text-center">
+			<h1 class="text-5xl font-bold dark:text-white mb-4">Curriculum Vitae</h1>
+			<p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
+				My professional experience, education, and technical skills
+			</p>
+			<a
+				href="/docs/visvam-rajesh-resume.pdf"
+				download
+				class="inline-flex items-center gap-2 px-8 py-3 bg-brand-blue text-white rounded-lg hover:bg-brand-blue-light transition-all hover:scale-105 shadow-lg"
+			>
+				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+					></path>
+				</svg>
+				Download PDF Resume
+			</a>
+		</div>
+	</section>
+
+	<!-- Education -->
+	<section class="py-16">
+		<div class="container mx-auto px-4">
+			<h2 class="text-3xl font-bold dark:text-white mb-8">Education</h2>
+			<div class="space-y-6 max-w-4xl">
+				{
+					profileData.education.map((edu) => (
+						<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-800">
+							<div class="flex flex-col sm:flex-row justify-between items-start gap-2">
+								<div>
+									<h3 class="text-xl font-bold dark:text-white">{edu.institution}</h3>
+									<p class="text-brand-blue font-semibold">{edu.degree}</p>
+									<p class="text-gray-600 dark:text-gray-400">GPA: {edu.gpa}</p>
+								</div>
+								<span class="text-gray-500 dark:text-gray-400 whitespace-nowrap">
+									{edu.startDate} - {edu.endDate}
+								</span>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Experience Timeline -->
+	<section class="py-16 bg-gray-50 dark:bg-dark-bg/50">
+		<div class="container mx-auto px-4">
+			<h2 class="text-3xl font-bold dark:text-white mb-12">Professional Experience</h2>
+			<div class="max-w-4xl">
+				<ExperienceTimeline experiences={experiences} />
+			</div>
+		</div>
+	</section>
+
+	<!-- Skills -->
+	<section class="py-16">
+		<div class="container mx-auto px-4">
+			<h2 class="text-3xl font-bold dark:text-white mb-8">Technical Skills</h2>
+
+			<div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+				<!-- Programming Languages -->
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+					<h3 class="text-xl font-bold dark:text-white mb-4">Programming Languages</h3>
+					<div class="flex flex-wrap gap-2">
+						{
+							skillsData.languages.map((lang) => (
+								<span class="px-3 py-2 text-sm rounded-lg border border-brand-blue/30 text-brand-blue font-medium bg-brand-blue/5">
+									{lang}
+								</span>
+							))
+						}
+					</div>
+				</div>
+
+				<!-- Technologies & Frameworks -->
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+					<h3 class="text-xl font-bold dark:text-white mb-4">Technologies & Frameworks</h3>
+					<div class="flex flex-wrap gap-2">
+						{
+							skillsData.technologies.map((tech) => (
+								<span class="px-3 py-2 text-sm rounded-lg border border-brand-blue/30 text-brand-blue font-medium bg-brand-blue/5">
+									{tech}
+								</span>
+							))
+						}
+					</div>
+				</div>
+
+				<!-- Frontend -->
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+					<h3 class="text-xl font-bold dark:text-white mb-4">Frontend Development</h3>
+					<div class="flex flex-wrap gap-2">
+						{
+							skillsData.categories.frontend.map((tech) => (
+								<span class="px-3 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-sm rounded-lg">
+									{tech}
+								</span>
+							))
+						}
+					</div>
+				</div>
+
+				<!-- Backend -->
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+					<h3 class="text-xl font-bold dark:text-white mb-4">Backend Development</h3>
+					<div class="flex flex-wrap gap-2">
+						{
+							skillsData.categories.backend.map((tech) => (
+								<span class="px-3 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm rounded-lg">
+									{tech}
+								</span>
+							))
+						}
+					</div>
+				</div>
+
+				<!-- Robotics -->
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+					<h3 class="text-xl font-bold dark:text-white mb-4">Robotics</h3>
+					<div class="flex flex-wrap gap-2">
+						{
+							skillsData.categories.robotics.map((tech) => (
+								<span class="px-3 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 text-sm rounded-lg">
+									{tech}
+								</span>
+							))
+						}
+					</div>
+				</div>
+
+				<!-- ML -->
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+					<h3 class="text-xl font-bold dark:text-white mb-4">Machine Learning</h3>
+					<div class="flex flex-wrap gap-2">
+						{
+							skillsData.categories.ml.map((tech) => (
+								<span class="px-3 py-2 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 text-sm rounded-lg">
+									{tech}
+								</span>
+							))
+						}
+					</div>
+				</div>
+			</div>
+
+			<!-- Human Languages -->
+			<div class="mt-8 max-w-5xl mx-auto">
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+					<h3 class="text-xl font-bold dark:text-white mb-4">Languages</h3>
+					<div class="flex flex-wrap gap-3">
+						{
+							skillsData.human_languages.map((lang) => (
+								<span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-gray-700 dark:text-gray-300">
+									{lang}
+								</span>
+							))
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

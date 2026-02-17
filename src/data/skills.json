@@ -1,0 +1,57 @@
+{
+  "languages": [
+    "Python",
+    "C",
+    "C++",
+    "Java",
+    "JavaScript",
+    "TypeScript",
+    "HTML",
+    "CSS",
+    "Rust",
+    "C#"
+  ],
+  "technologies": [
+    "React",
+    "Bootstrap",
+    "Node.js",
+    "Next.js",
+    "MongoDB",
+    "ROS 2",
+    "PyTorch",
+    "Git",
+    "Linux"
+  ],
+  "human_languages": [
+    "English (Native)",
+    "Tamil (Fluent)",
+    "French (Intermediate)"
+  ],
+  "categories": {
+    "frontend": [
+      "React",
+      "Next.js",
+      "Astro",
+      "Tailwind CSS",
+      "Bootstrap"
+    ],
+    "backend": [
+      "Node.js",
+      "MongoDB",
+      "Rust",
+      "Express"
+    ],
+    "robotics": [
+      "ROS 2",
+      "C++",
+      "Path Planning",
+      "SLAM"
+    ],
+    "ml": [
+      "PyTorch",
+      "Python",
+      "Vision Transformers",
+      "Scikit-Learn"
+    ]
+  }
+}

@@ -16,4 +16,53 @@ const blog = defineCollection({
 		}),
 });
 
-export const collections = { blog };
+const projects = defineCollection({
+	loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			description: z.string(),
+			category: z.enum(['robotics', 'ml', 'web', 'game', 'research', 'other']),
+			tags: z.array(z.string()),
+			date: z.coerce.date(),
+			featured: z.boolean().default(false),
+			github: z.string().url().optional(),
+			demo: z.string().url().optional(),
+			image: image(),
+			tech: z.array(z.string()),
+		}),
+});
+
+const publications = defineCollection({
+	loader: glob({ base: './src/content/publications', pattern: '**/*.{md,mdx}' }),
+	schema: () =>
+		z.object({
+			title: z.string(),
+			authors: z.array(z.string()),
+			venue: z.string(),
+			date: z.coerce.date(),
+			abstract: z.string(),
+			pdf: z.string().optional(),
+			doi: z.string().optional(),
+			citation: z.string(),
+		}),
+});
+
+const experience = defineCollection({
+	loader: glob({ base: './src/content/experience', pattern: '**/*.{md,mdx}' }),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			organization: z.string(),
+			location: z.string().optional(),
+			startDate: z.coerce.date(),
+			endDate: z.coerce.date().optional(),
+			current: z.boolean().default(false),
+			description: z.string(),
+			logo: image().optional(),
+			highlights: z.array(z.string()),
+			tech: z.array(z.string()).optional(),
+		}),
+});
+
+export const collections = { blog, projects, publications, experience };

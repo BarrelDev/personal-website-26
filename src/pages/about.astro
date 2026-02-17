@@ -1,63 +1,110 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import profileImg from '../assets/profile/profile-main.jpg';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
+<BaseLayout
+	title="About | Visvam Rajesh"
+	description="Learn more about Visvam Rajesh - student, developer, and robotics enthusiast."
 >
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+	<section class="py-20">
+		<div class="container mx-auto px-4">
+			<div class="max-w-4xl mx-auto">
+				<!-- Header -->
+				<div class="text-center mb-12">
+					<h1 class="text-5xl font-bold dark:text-white mb-4">About Me</h1>
+					<p class="text-xl text-gray-600 dark:text-gray-400">Student, Developer, Robotics Enthusiast</p>
+				</div>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+				<!-- Profile Image & Bio -->
+				<div class="grid md:grid-cols-5 gap-8 mb-12">
+					<div class="md:col-span-2">
+						<Image
+							src={profileImg}
+							alt="Visvam Rajesh"
+							width={400}
+							height={400}
+							class="rounded-2xl shadow-2xl object-cover aspect-square w-full"
+						/>
+					</div>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+					<div class="md:col-span-3 space-y-4 text-gray-700 dark:text-gray-300">
+						<p class="text-lg">
+							Hi! I'm Visvam Rajesh, a Computer Science and Robotics student at Carnegie Mellon
+							University. I'm passionate about building intelligent systems that solve real-world
+							problems.
+						</p>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+						<p>
+							Currently, I'm working on driverless path-planning systems at Carnegie Mellon Racing
+							and developing backend infrastructure at ScottyLabs. Previously, I led FRC Team 3637
+							as President to the World Championship and conducted research on pathfinding
+							algorithms with Dr. Wu at NJIT.
+						</p>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+						<p>
+							My interests span autonomous systems, machine learning, and full-stack development. I
+							enjoy working on challenging problems that require both theoretical understanding and
+							practical implementation.
+						</p>
+
+						<p>
+							When I'm not coding, you can find me working on robotics projects, contributing to
+							open source, or exploring new technologies.
+						</p>
+					</div>
+				</div>
+
+				<!-- Quick Facts -->
+				<div class="grid md:grid-cols-3 gap-6 mb-12">
+					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg text-center">
+						<div class="text-4xl font-bold text-brand-blue mb-2">10+</div>
+						<div class="text-gray-600 dark:text-gray-400">Projects Completed</div>
+					</div>
+					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg text-center">
+						<div class="text-4xl font-bold text-brand-blue mb-2">1</div>
+						<div class="text-gray-600 dark:text-gray-400">Published Paper</div>
+					</div>
+					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg text-center">
+						<div class="text-4xl font-bold text-brand-blue mb-2">4+</div>
+						<div class="text-gray-600 dark:text-gray-400">Years in Robotics</div>
+					</div>
+				</div>
+
+				<!-- Journey Highlights -->
+				<div
+					class="bg-gradient-to-r from-brand-blue/10 to-brand-blue-light/10 dark:from-brand-blue/5 dark:to-transparent rounded-2xl p-8"
+				>
+					<h2 class="text-2xl font-bold dark:text-white mb-6">Journey Highlights</h2>
+					<div class="space-y-4">
+						<div class="flex gap-4">
+							<div class="text-brand-blue font-bold min-w-[120px]">2025 - Now</div>
+							<div class="dark:text-gray-300">
+								Started at Carnegie Mellon University, joined ScottyLabs and CMR
+							</div>
+						</div>
+						<div class="flex gap-4">
+							<div class="text-brand-blue font-bold min-w-[120px]">2024</div>
+							<div class="dark:text-gray-300">
+								Published research paper at IEEE IPCCC, interned at Visra Solutions
+							</div>
+						</div>
+						<div class="flex gap-4">
+							<div class="text-brand-blue font-bold min-w-[120px]">2021 - 2025</div>
+							<div class="dark:text-gray-300">
+								Led FRC Team 3637 as President, competed at World Championship
+							</div>
+						</div>
+						<div class="flex gap-4">
+							<div class="text-brand-blue font-bold min-w-[120px]">2020</div>
+							<div class="dark:text-gray-300">
+								Created Pandemic Inc. for Congressional App Challenge
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

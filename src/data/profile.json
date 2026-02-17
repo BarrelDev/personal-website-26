@@ -1,0 +1,36 @@
+{
+  "name": "Visvam Rajesh",
+  "title": "Computer Science & Robotics Student",
+  "bio": "Carnegie Mellon University student passionate about robotics, autonomous systems, and software development.",
+  "email": "visvamrajesh@outlook.com",
+  "location": "Pittsburgh, PA",
+  "education": [
+    {
+      "institution": "Carnegie Mellon University",
+      "degree": "Bachelor of Science in Computer Science & Robotics",
+      "startDate": "2025",
+      "endDate": "2028",
+      "gpa": "3.35/4.00"
+    },
+    {
+      "institution": "Hunterdon Central Regional High School",
+      "degree": "High School Diploma",
+      "startDate": "2021",
+      "endDate": "2025",
+      "gpa": "4.43/5.00"
+    }
+  ],
+  "social": {
+    "github": "https://github.com/BarrelDev/",
+    "linkedin": "https://www.linkedin.com/in/visvam/",
+    "email": "visvamrajesh@outlook.com"
+  },
+  "roles": [
+    "Developer",
+    "Robotics Programmer",
+    "Programming Captain",
+    "Student",
+    "Researcher",
+    "Engineer"
+  ]
+}

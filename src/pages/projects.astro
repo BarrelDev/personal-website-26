@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const sortedProjects = projects.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Get unique categories
+const categories = ['all', ...new Set(projects.map((p) => p.data.category))];
+---
+
+<BaseLayout
+	title="Projects | Visvam Rajesh"
+	description="A collection of my software development, robotics, and machine learning projects."
+>
+	<!-- Header -->
+	<section
+		class="py-20 bg-gradient-to-br from-brand-blue/10 to-brand-blue-light/10 dark:from-brand-blue/5 dark:to-transparent"
+	>
+		<div class="container mx-auto px-4 text-center">
+			<h1 class="text-5xl font-bold dark:text-white mb-4">My Projects</h1>
+			<p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+				A collection of software projects spanning robotics, machine learning, web development, and game design.
+			</p>
+		</div>
+	</section>
+
+	<!-- Filters & Grid -->
+	<section class="py-16">
+		<div class="container mx-auto px-4">
+			<!-- Category Filters -->
+			<div class="flex flex-wrap justify-center gap-3 mb-12">
+				{
+					categories.map((category) => (
+						<button
+							class="filter-btn px-6 py-2 rounded-full border-2 transition-all capitalize
+                   hover:border-brand-blue hover:text-brand-blue dark:border-gray-700 dark:text-gray-300"
+							data-filter={category}
+							data-active={category === 'all' ? 'true' : 'false'}
+						>
+							{category}
+						</button>
+					))
+				}
+			</div>
+
+			<!-- Projects Grid -->
+			<div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{
+					sortedProjects.map((project) => (
+						<div class="project-item" data-category={project.data.category}>
+							<ProjectCard
+								title={project.data.title}
+								description={project.data.description}
+								image={project.data.image}
+								category={project.data.category}
+								tags={project.data.tech}
+								github={project.data.github}
+								demo={project.data.demo}
+								featured={project.data.featured}
+							/>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.filter-btn[data-active='true'] {
+		@apply bg-brand-blue text-white border-brand-blue;
+	}
+</style>
+
+<!-- Filter functionality -->
+<script>
+	function setupFilters() {
+		const filterButtons = document.querySelectorAll('.filter-btn');
+		const projectItems = document.querySelectorAll('.project-item');
+
+		filterButtons.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const filter = btn.getAttribute('data-filter');
+
+				// Update active button
+				filterButtons.forEach((b) => b.setAttribute('data-active', 'false'));
+				btn.setAttribute('data-active', 'true');
+
+				// Filter projects
+				projectItems.forEach((item) => {
+					const category = item.getAttribute('data-category');
+					const el = item as HTMLElement;
+
+					if (filter === 'all' || category === filter) {
+						el.style.display = 'block';
+						el.style.opacity = '1';
+						el.style.transform = 'scale(1)';
+					} else {
+						el.style.opacity = '0';
+						el.style.transform = 'scale(0.95)';
+						setTimeout(() => {
+							el.style.display = 'none';
+						}, 200);
+					}
+				});
+			});
+		});
+	}
+
+	setupFilters();
+	document.addEventListener('astro:page-load', setupFilters);
+</script>

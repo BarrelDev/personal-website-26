@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+import { getCollection } from 'astro:content';
+
+const publications = await getCollection('publications');
+const sortedPubs = publications.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout
+	title="Research | Visvam Rajesh"
+	description="Publications and research in pathfinding algorithms and robotics."
+>
+	<!-- Header -->
+	<section
+		class="py-20 bg-gradient-to-br from-brand-blue/10 to-brand-blue-light/10 dark:from-brand-blue/5 dark:to-transparent"
+	>
+		<div class="container mx-auto px-4 text-center">
+			<h1 class="text-5xl font-bold dark:text-white mb-4">Research & Publications</h1>
+			<p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+				My research focuses on pathfinding algorithms and autonomous systems.
+			</p>
+		</div>
+	</section>
+
+	<!-- Publications List -->
+	<section class="py-16">
+		<div class="container mx-auto px-4">
+			<div class="max-w-4xl mx-auto space-y-8">
+				{
+					sortedPubs.map((pub) => (
+						<PublicationCard
+							title={pub.data.title}
+							authors={pub.data.authors}
+							venue={pub.data.venue}
+							date={pub.data.date}
+							abstract={pub.data.abstract}
+							pdf={pub.data.pdf}
+							doi={pub.data.doi}
+							citation={pub.data.citation}
+						/>
+					))
+				}
+			</div>
+
+			{
+				sortedPubs.length === 0 && (
+					<div class="text-center text-gray-500 dark:text-gray-400 py-12">
+						<p>Publications coming soon!</p>
+					</div>
+				)
+			}
+		</div>
+	</section>
+
+	<!-- Research Interests -->
+	<section class="py-16 bg-gray-50 dark:bg-dark-bg/50">
+		<div class="container mx-auto px-4">
+			<div class="max-w-4xl mx-auto">
+				<h2 class="text-3xl font-bold dark:text-white mb-8 text-center">Research Interests</h2>
+				<div class="grid md:grid-cols-2 gap-6">
+					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+						<h3 class="text-xl font-bold dark:text-white mb-3">Pathfinding Algorithms</h3>
+						<p class="text-gray-600 dark:text-gray-400">
+							Developing efficient 3D voxel-based pathfinding algorithms for dynamic environments
+							with variable movement speeds.
+						</p>
+					</div>
+					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+						<h3 class="text-xl font-bold dark:text-white mb-3">Autonomous Systems</h3>
+						<p class="text-gray-600 dark:text-gray-400">
+							Path planning and control systems for driverless racing vehicles using SLAM and
+							trajectory optimization.
+						</p>
+					</div>
+					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+						<h3 class="text-xl font-bold dark:text-white mb-3">Machine Learning</h3>
+						<p class="text-gray-600 dark:text-gray-400">
+							Vision Transformers and neural networks for image classification and computer vision
+							tasks.
+						</p>
+					</div>
+					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+						<h3 class="text-xl font-bold dark:text-white mb-3">Robotics Software</h3>
+						<p class="text-gray-600 dark:text-gray-400">
+							Real-time control systems and trajectory planning for competitive FIRST Robotics
+							Competition robots.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

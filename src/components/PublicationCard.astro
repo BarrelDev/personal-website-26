@@ -1,0 +1,152 @@
+---
+interface Props {
+	title: string;
+	authors: string[];
+	venue: string;
+	date: Date;
+	abstract: string;
+	pdf?: string;
+	doi?: string;
+	citation: string;
+}
+
+const { title, authors, venue, date, abstract, pdf, doi, citation } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+
+// Bold the author name "Visvam Rajesh" in the author list
+const highlightedAuthors = authors.map((author) =>
+	author.includes('Visvam') ? `<strong class="text-brand-blue">${author}</strong>` : author,
+);
+---
+
+<article
+	class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-shadow"
+>
+	<!-- Header -->
+	<div class="space-y-3">
+		<h3 class="text-2xl font-bold dark:text-white hover:text-brand-blue transition-colors">
+			{title}
+		</h3>
+
+		<!-- Authors -->
+		<p class="text-gray-700 dark:text-gray-300" set:html={highlightedAuthors.join(', ')} />
+
+		<!-- Venue & Date -->
+		<div class="flex flex-wrap gap-2 items-center text-sm">
+			<span class="px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full font-semibold">
+				{venue}
+			</span>
+			<span class="text-gray-500 dark:text-gray-400">
+				{formattedDate}
+			</span>
+		</div>
+	</div>
+
+	<!-- Abstract (collapsible) -->
+	<details class="mt-4 group/details">
+		<summary
+			class="cursor-pointer text-brand-blue font-semibold hover:underline list-none flex items-center gap-2"
+		>
+			<svg
+				class="w-4 h-4 transform group-open/details:rotate-90 transition-transform"
+				fill="currentColor"
+				viewBox="0 0 20 20"
+			>
+				<path
+					fill-rule="evenodd"
+					d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+					clip-rule="evenodd"></path>
+			</svg>
+			Abstract
+		</summary>
+		<p class="mt-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed pl-6">
+			{abstract}
+		</p>
+	</details>
+
+	<!-- Citation (collapsible) -->
+	<details class="mt-2 group/cite">
+		<summary
+			class="cursor-pointer text-brand-blue font-semibold hover:underline list-none flex items-center gap-2"
+		>
+			<svg
+				class="w-4 h-4 transform group-open/cite:rotate-90 transition-transform"
+				fill="currentColor"
+				viewBox="0 0 20 20"
+			>
+				<path
+					fill-rule="evenodd"
+					d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+					clip-rule="evenodd"></path>
+			</svg>
+			Citation
+		</summary>
+		<div class="mt-3 pl-6">
+			<pre
+				class="text-xs bg-gray-100 dark:bg-gray-900 p-4 rounded overflow-x-auto whitespace-pre-wrap">{citation}</pre>
+			<button
+				class="copy-citation-btn mt-2 px-3 py-1 text-xs bg-brand-blue/10 text-brand-blue rounded hover:bg-brand-blue/20 transition-colors"
+				data-citation={citation}
+			>
+				Copy Citation
+			</button>
+		</div>
+	</details>
+
+	<!-- Actions -->
+	<div class="flex flex-wrap gap-3 mt-6">
+		{
+			pdf && (
+				<a
+					href={pdf}
+					target="_blank"
+					class="px-4 py-2 bg-brand-blue text-white rounded-lg hover:bg-brand-blue-light transition-colors flex items-center gap-2"
+				>
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+						/>
+					</svg>
+					Download PDF
+				</a>
+			)
+		}
+		{
+			doi && (
+				<a
+					href={`https://doi.org/${doi}`}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="px-4 py-2 border-2 border-brand-blue text-brand-blue rounded-lg hover:bg-brand-blue hover:text-white transition-colors"
+				>
+					DOI
+				</a>
+			)
+		}
+	</div>
+</article>
+
+<script>
+	function setupCopyButtons() {
+		document.querySelectorAll('.copy-citation-btn').forEach((btn) => {
+			btn.addEventListener('click', async () => {
+				const citation = (btn as HTMLElement).dataset.citation;
+				if (citation) {
+					await navigator.clipboard.writeText(citation);
+					const originalText = btn.textContent;
+					btn.textContent = 'Copied!';
+					setTimeout(() => {
+						btn.textContent = originalText;
+					}, 2000);
+				}
+			});
+		});
+	}
+
+	setupCopyButtons();
+	document.addEventListener('astro:page-load', setupCopyButtons);
+</script>
