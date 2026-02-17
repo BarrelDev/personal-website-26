@@ -99,7 +99,7 @@ import { SOCIAL_LINKS } from '../consts';
 				<div class="relative w-full max-w-md mx-auto">
 					<!-- Decorative glow -->
 					<div
-						class="absolute -inset-4 bg-gradient-to-r from-brand-blue to-brand-blue-light rounded-full opacity-20 blur-2xl"
+						class="absolute -inset-4 bg-gradient-to-r from-brand-blue to-brand-blue-light rounded-2xl opacity-20 blur-2xl"
 					>
 					</div>
 
@@ -108,8 +108,8 @@ import { SOCIAL_LINKS } from '../consts';
 						src={profileImg}
 						alt={profileData.name}
 						width={500}
-						height={500}
-						class="relative rounded-full border-4 border-brand-blue/50 shadow-2xl object-cover aspect-square"
+						height={625}
+						class="relative rounded-3xl border-4 border-brand-blue/50 shadow-2xl object-cover aspect-[4/5]"
 					/>
 				</div>
 			</div>
@@ -129,15 +129,26 @@ import { SOCIAL_LINKS } from '../consts';
 <script>
 	import Typed from 'typed.js';
 
+	let typedInstance: Typed | null = null;
+
 	function initTyped() {
 		const el = document.getElementById('typed-text');
 		const cursor = document.getElementById('typed-cursor');
 		if (!el) return;
 
-		// Hide the custom cursor since Typed.js provides its own
+		// Destroy previous instance to prevent duplicate cursors
+		if (typedInstance) {
+			typedInstance.destroy();
+			typedInstance = null;
+		}
+
+		// Hide the static fallback cursor
 		if (cursor) cursor.style.display = 'none';
 
-		new Typed('#typed-text', {
+		// Clear any leftover content/cursors from previous instances
+		el.textContent = '';
+
+		typedInstance = new Typed('#typed-text', {
 			strings: [
 				'Developer',
 				'Robotics Programmer',

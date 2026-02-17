@@ -2,7 +2,7 @@
 title: "Software Engineer"
 organization: "ScottyLabs"
 location: "Pittsburgh, PA"
-startDate: 2025-09-01
+startDate: 2025-09-09
 current: true
 description: "Working on cmucourses.com website backend, developing student schedule creation heuristic."
 highlights:
