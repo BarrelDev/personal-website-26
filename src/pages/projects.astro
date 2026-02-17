@@ -69,6 +69,24 @@ const categories = ['all', ...new Set(projects.map((p) => p.data.category))];
 	.filter-btn[data-active='true'] {
 		@apply bg-brand-blue text-white border-brand-blue;
 	}
+
+	.project-item {
+		transition: opacity 0.3s ease, transform 0.3s ease;
+	}
+
+	.project-item.hiding {
+		opacity: 0;
+		transform: scale(0.97) translateY(6px);
+	}
+
+	.project-item.showing {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
+
+	.project-item.hidden-item {
+		display: none;
+	}
 </style>
 
 <!-- Filter functionality -->
@@ -76,33 +94,86 @@ const categories = ['all', ...new Set(projects.map((p) => p.data.category))];
 	function setupFilters() {
 		const filterButtons = document.querySelectorAll('.filter-btn');
 		const projectItems = document.querySelectorAll('.project-item');
+		let animating = false;
 
 		filterButtons.forEach((btn) => {
 			btn.addEventListener('click', () => {
+				if (animating) return; // Block clicks during animation
 				const filter = btn.getAttribute('data-filter');
 
 				// Update active button
 				filterButtons.forEach((b) => b.setAttribute('data-active', 'false'));
 				btn.setAttribute('data-active', 'true');
 
-				// Filter projects
+				// Sort items into hide/show groups
+				const toHide: HTMLElement[] = [];
+				const toShow: HTMLElement[] = [];
+
 				projectItems.forEach((item) => {
 					const category = item.getAttribute('data-category');
 					const el = item as HTMLElement;
+					const matches = filter === 'all' || category === filter;
 
-					if (filter === 'all' || category === filter) {
-						el.style.display = 'block';
-						el.style.opacity = '1';
-						el.style.transform = 'scale(1)';
-					} else {
-						el.style.opacity = '0';
-						el.style.transform = 'scale(0.95)';
-						setTimeout(() => {
-							el.style.display = 'none';
-						}, 200);
+					if (matches) {
+						toShow.push(el);
+					} else if (!el.classList.contains('hidden-item')) {
+						toHide.push(el);
 					}
 				});
+
+				animating = true;
+
+				// Phase 1: fade out all currently visible non-matching items
+				if (toHide.length > 0) {
+					toHide.forEach((el) => {
+						el.classList.remove('showing');
+						el.classList.add('hiding');
+					});
+
+					// Wait for the longest fade-out to finish (300ms transition)
+					setTimeout(() => {
+						toHide.forEach((el) => {
+							el.classList.add('hidden-item');
+							el.classList.remove('hiding');
+						});
+						// Phase 2: stagger fade in matching items
+						revealItems(toShow);
+					}, 320);
+				} else {
+					// Nothing to hide, go straight to reveal
+					revealItems(toShow);
+				}
+
+				function revealItems(items: HTMLElement[]) {
+					// Prepare: make all matching items visible but invisible
+					items.forEach((el) => {
+						el.classList.remove('hidden-item', 'showing');
+						el.classList.add('hiding');
+					});
+
+					// Force reflow so browsers register the initial state
+					void document.body.offsetHeight;
+
+					// Stagger each item's fade-in
+					items.forEach((el, i) => {
+						setTimeout(() => {
+							el.classList.remove('hiding');
+							el.classList.add('showing');
+						}, i * 60);
+					});
+
+					// Unlock after all animations complete
+					const totalTime = items.length * 60 + 300;
+					setTimeout(() => {
+						animating = false;
+					}, totalTime);
+				}
 			});
+		});
+
+		// Initialize all as showing
+		projectItems.forEach((el) => {
+			(el as HTMLElement).classList.add('showing');
 		});
 	}
 
