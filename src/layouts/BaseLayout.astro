@@ -1,7 +1,9 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import BaseHead from '../components/BaseHead.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import SearchModal from '../components/SearchModal.astro';
 
 interface Props {
 	title: string;
@@ -13,20 +15,23 @@ const { title, description, image } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="dark" transition:animate="fade">
+<html lang="en" class="dark">
 	<head>
 		<BaseHead title={title} description={description} image={image} />
+		<ClientRouter />
 	</head>
-	<body class="dark:bg-dark-bg dark:text-gray-100 bg-white text-gray-900 transition-colors duration-300">
-		<Navigation />
-		<main class="min-h-screen">
+	<body class="dark:bg-dark-bg dark:text-gray-100 bg-white text-gray-900">
+		<header transition:persist="nav">
+			<Navigation />
+		</header>
+		<SearchModal />
+		<main class="min-h-screen page-content">
 			<slot />
 		</main>
 		<Footer />
 
 		<!-- Dark mode initialization script (prevent FOUC) -->
 		<script is:inline>
-			// Initialize dark mode from localStorage or default to dark
 			const theme = localStorage.getItem('theme') || 'dark';
 			document.documentElement.classList.toggle('dark', theme === 'dark');
 		</script>
@@ -34,33 +39,44 @@ const { title, description, image } = Astro.props;
 </html>
 
 <style is:global>
-	/* View Transitions customization */
-	@view-transition {
-		navigation: auto;
+	/* Initial page load fade-in (plays once on first visit / hard refresh) */
+	@keyframes page-fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
 	}
 
-	::view-transition-old(root),
-	::view-transition-new(root) {
-		animation-duration: 0.3s;
+	.page-content {
+		animation: page-fade-in 0.5s ease-out both;
 	}
 
+	/* View Transitions: smooth crossfade for SPA navigation */
 	::view-transition-old(root) {
-		animation-name: fade-out;
+		animation: vt-fade-out 0.2s ease-in both;
 	}
 
 	::view-transition-new(root) {
-		animation-name: fade-in;
+		animation: vt-fade-in 0.35s ease-out both;
 	}
 
-	@keyframes fade-out {
+	@keyframes vt-fade-out {
+		from {
+			opacity: 1;
+		}
 		to {
 			opacity: 0;
 		}
 	}
 
-	@keyframes fade-in {
+	@keyframes vt-fade-in {
 		from {
 			opacity: 0;
+		}
+		to {
+			opacity: 1;
 		}
 	}
 </style>

@@ -10,7 +10,7 @@ export const SITE_URL = 'https://visvamrajesh.com';
 export const SOCIAL_LINKS = {
 	github: 'https://github.com/BarrelDev/',
 	linkedin: 'https://www.linkedin.com/in/visvam/',
-	email: 'visvamrajesh@outlook.com',
+	email: 'mailto:visvamrajesh@outlook.com',
 };
 
 export const NAV_LINKS = [
