@@ -6,15 +6,48 @@ import profileData from '../data/profile.json';
 import skillsData from '../data/skills.json';
 
 const experiences = await getCollection('experience');
+
+const sections = [
+	{ id: 'download', label: 'download' },
+	{ id: 'education', label: 'education' },
+	{ id: 'experience', label: 'experience' },
+	{ id: 'skills', label: 'skills' },
+	{ id: 'languages', label: 'languages' },
+];
 ---
 
 <BaseLayout title="CV | Visvam Rajesh" description="Curriculum Vitae - Experience, education, and skills.">
-	<!-- Header with Download Button -->
-	<section
-		class="pt-10"
+	<!-- Sidebar Progress Nav -->
+	<nav
+		id="cv-sidebar"
+		class="hidden lg:fixed lg:block right-6 top-1/2 -translate-y-1/2 z-40
+			   bg-white/80 dark:bg-dark-card/80 backdrop-blur-md
+			   border border-gray-200 dark:border-dark-border
+			   rounded-xl px-4 py-3 shadow-lg"
 	>
+		<ul class="flex flex-col gap-2.5">
+			{
+				sections.map((s) => (
+					<li>
+						<a
+							href={`#${s.id}`}
+							data-cv-link={s.id}
+							class="cv-nav-link group flex items-center gap-2.5 text-right transition-all duration-200"
+						>
+							<span class="text-xs font-medium text-gray-400 dark:text-gray-500 group-hover:text-brand-blue transition-colors">
+								{s.label}
+							</span>
+							<span class="block w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-gray-600 group-hover:bg-brand-blue transition-all duration-200" />
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
+
+	<!-- Header with Download Button -->
+	<section id="download" class="pt-10">
 		<div class="container mx-auto px-4 text-center">
-			<!-- <h1 class="text-5xl font-bold dark:text-white mb-4">Curriculum Vitae</h1> -->
 			<a
 				href="/docs/visvam-rajesh-resume.pdf"
 				download
@@ -34,13 +67,17 @@ const experiences = await getCollection('experience');
 	</section>
 
 	<!-- Education -->
-	<section class="pt-10 py-20">
+	<section id="education" class="pt-10 py-20">
 		<div class="container mx-auto px-4">
-			<h2 class="text-3xl font-bold dark:text-white mb-8" data-reveal>Education</h2>
+			<h2 class="text-3xl font-bold dark:text-white mb-8" data-reveal>education</h2>
 			<div class="space-y-6 max-w-4xl">
 				{
 					profileData.education.map((edu, i) => (
-						<div data-reveal data-reveal-delay={(i + 1).toString()} class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg border border-gray-200 dark:border-dark-border">
+						<div
+							data-reveal
+							data-reveal-delay={(i + 1).toString()}
+							class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg border border-gray-200 dark:border-dark-border"
+						>
 							<div class="flex flex-col sm:flex-row justify-between items-start gap-2">
 								<div>
 									<h3 class="text-xl font-bold dark:text-white">{edu.institution}</h3>
@@ -59,9 +96,9 @@ const experiences = await getCollection('experience');
 	</section>
 
 	<!-- Experience Timeline -->
-	<section class="py-16 bg-gray-50 dark:bg-dark-card/50">
+	<section id="experience" class="py-16 bg-gray-50 dark:bg-dark-card/50">
 		<div class="container mx-auto px-4">
-			<h2 class="text-3xl font-bold dark:text-white mb-12" data-reveal>Professional Experience</h2>
+			<h2 class="text-3xl font-bold dark:text-white mb-12" data-reveal>experience</h2>
 			<div class="max-w-4xl" data-reveal>
 				<ExperienceTimeline experiences={experiences} />
 			</div>
@@ -69,14 +106,18 @@ const experiences = await getCollection('experience');
 	</section>
 
 	<!-- Skills -->
-	<section class="py-16">
+	<section id="skills" class="py-16">
 		<div class="container mx-auto px-4">
-			<h2 class="text-3xl font-bold dark:text-white mb-8" data-reveal>Technical Skills</h2>
+			<h2 class="text-3xl font-bold dark:text-white mb-8" data-reveal>skills</h2>
 
 			<div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 				<!-- Programming Languages -->
-				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="1">
-					<h3 class="text-xl font-bold dark:text-white mb-4">Programming Languages</h3>
+				<div
+					class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg"
+					data-reveal
+					data-reveal-delay="1"
+				>
+					<h3 class="text-xl font-bold dark:text-white mb-4">programming languages</h3>
 					<div class="flex flex-wrap gap-2">
 						{
 							skillsData.languages.map((lang) => (
@@ -89,8 +130,12 @@ const experiences = await getCollection('experience');
 				</div>
 
 				<!-- Technologies & Frameworks -->
-				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="2">
-					<h3 class="text-xl font-bold dark:text-white mb-4">Technologies & Frameworks</h3>
+				<div
+					class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg"
+					data-reveal
+					data-reveal-delay="2"
+				>
+					<h3 class="text-xl font-bold dark:text-white mb-4">technologies & frameworks</h3>
 					<div class="flex flex-wrap gap-2">
 						{
 							skillsData.technologies.map((tech) => (
@@ -103,8 +148,12 @@ const experiences = await getCollection('experience');
 				</div>
 
 				<!-- Frontend -->
-				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="1">
-					<h3 class="text-xl font-bold dark:text-white mb-4">Frontend Development</h3>
+				<div
+					class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg"
+					data-reveal
+					data-reveal-delay="1"
+				>
+					<h3 class="text-xl font-bold dark:text-white mb-4">frontend development</h3>
 					<div class="flex flex-wrap gap-2">
 						{
 							skillsData.categories.frontend.map((tech) => (
@@ -117,8 +166,12 @@ const experiences = await getCollection('experience');
 				</div>
 
 				<!-- Backend -->
-				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="2">
-					<h3 class="text-xl font-bold dark:text-white mb-4">Backend Development</h3>
+				<div
+					class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg"
+					data-reveal
+					data-reveal-delay="2"
+				>
+					<h3 class="text-xl font-bold dark:text-white mb-4">backend development</h3>
 					<div class="flex flex-wrap gap-2">
 						{
 							skillsData.categories.backend.map((tech) => (
@@ -131,8 +184,12 @@ const experiences = await getCollection('experience');
 				</div>
 
 				<!-- Robotics -->
-				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="1">
-					<h3 class="text-xl font-bold dark:text-white mb-4">Robotics</h3>
+				<div
+					class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg"
+					data-reveal
+					data-reveal-delay="1"
+				>
+					<h3 class="text-xl font-bold dark:text-white mb-4">robotics</h3>
 					<div class="flex flex-wrap gap-2">
 						{
 							skillsData.categories.robotics.map((tech) => (
@@ -145,8 +202,12 @@ const experiences = await getCollection('experience');
 				</div>
 
 				<!-- ML -->
-				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="2">
-					<h3 class="text-xl font-bold dark:text-white mb-4">Machine Learning</h3>
+				<div
+					class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg"
+					data-reveal
+					data-reveal-delay="2"
+				>
+					<h3 class="text-xl font-bold dark:text-white mb-4">machine learning</h3>
 					<div class="flex flex-wrap gap-2">
 						{
 							skillsData.categories.ml.map((tech) => (
@@ -158,11 +219,15 @@ const experiences = await getCollection('experience');
 					</div>
 				</div>
 			</div>
+		</div>
+	</section>
 
-			<!-- Human Languages -->
-			<div class="mt-8 max-w-5xl mx-auto">
-				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
-					<h3 class="text-xl font-bold dark:text-white mb-4">Languages</h3>
+	<!-- Human Languages -->
+	<section id="languages" class="pb-16 pt-2">
+		<div class="container mx-auto px-4">
+			<div class="max-w-5xl mx-auto">
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal>
+					<h3 class="text-xl font-bold dark:text-white mb-4">languages</h3>
 					<div class="flex flex-wrap gap-3">
 						{
 							skillsData.human_languages.map((lang) => (
@@ -177,3 +242,93 @@ const experiences = await getCollection('experience');
 		</div>
 	</section>
 </BaseLayout>
+
+<script>
+	function initCvSidebar() {
+		const sidebar = document.getElementById('cv-sidebar');
+		if (!sidebar) return;
+
+		const links = sidebar.querySelectorAll('[data-cv-link]');
+		const sectionIds = Array.from(links).map((l) => l.getAttribute('data-cv-link')!);
+		const sections = sectionIds
+			.map((id) => document.getElementById(id))
+			.filter(Boolean) as HTMLElement[];
+
+		if (!sections.length) return;
+
+		let clickedId: string | null = null;
+
+		// Smooth scroll on click — manually set active to handle unreachable sections
+		links.forEach((link) => {
+			link.addEventListener('click', (e) => {
+				e.preventDefault();
+				const id = (link as HTMLElement).getAttribute('data-cv-link')!;
+				const target = document.getElementById(id);
+				if (!target) return;
+
+				// Force-highlight the clicked section immediately
+				clickedId = id;
+				setActive(id);
+
+				// Scroll to the section
+				const navHeight = 80;
+				const y = target.getBoundingClientRect().top + window.scrollY - navHeight;
+				window.scrollTo({ top: y, behavior: 'smooth' });
+
+				// Release the forced highlight after scroll settles
+				setTimeout(() => {
+					clickedId = null;
+					updateActive();
+				}, 800);
+			});
+		});
+
+		// Scroll spy
+		function updateActive() {
+			if (clickedId) return; // Don't override while a click-scroll is in progress
+
+			const scrollY = window.scrollY + 150;
+			const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 50;
+			let currentId = sectionIds[0];
+
+			// If at the bottom of the page, highlight the last section
+			if (atBottom) {
+				currentId = sectionIds[sectionIds.length - 1];
+			} else {
+				for (const section of sections) {
+					if (section.offsetTop <= scrollY) {
+						currentId = section.id;
+					}
+				}
+			}
+
+			setActive(currentId);
+		}
+
+		function setActive(activeId: string) {
+			links.forEach((link) => {
+				const id = (link as HTMLElement).getAttribute('data-cv-link');
+				const label = link.querySelector('span:first-child') as HTMLElement;
+				const dot = link.querySelector('span:last-child') as HTMLElement;
+
+				if (id === activeId) {
+					label?.classList.remove('text-gray-400', 'dark:text-gray-500');
+					label?.classList.add('text-brand-blue', 'dark:text-brand-blue');
+					dot?.classList.remove('bg-gray-300', 'dark:bg-gray-600', 'w-1.5', 'h-1.5');
+					dot?.classList.add('bg-brand-blue', 'w-2.5', 'h-2.5');
+				} else {
+					label?.classList.add('text-gray-400', 'dark:text-gray-500');
+					label?.classList.remove('text-brand-blue', 'dark:text-brand-blue');
+					dot?.classList.add('bg-gray-300', 'dark:bg-gray-600', 'w-1.5', 'h-1.5');
+					dot?.classList.remove('bg-brand-blue', 'w-2.5', 'h-2.5');
+				}
+			});
+		}
+
+		window.addEventListener('scroll', updateActive, { passive: true });
+		updateActive();
+	}
+
+	initCvSidebar();
+	document.addEventListener('astro:page-load', initCvSidebar);
+</script>

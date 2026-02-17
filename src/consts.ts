@@ -14,9 +14,9 @@ export const SOCIAL_LINKS = {
 };
 
 export const NAV_LINKS = [
-	{ href: '/projects', label: 'Projects' },
-	{ href: '/research', label: 'Research' },
-	{ href: '/cv', label: 'CV' },
-	{ href: '/blog', label: 'Blog' },
-	{ href: '/about', label: 'About' },
+	{ href: '/projects', label: 'projects' },
+	{ href: '/research', label: 'research' },
+	{ href: '/cv', label: 'cv' },
+	{ href: '/blog', label: 'blog' },
+	{ href: '/about', label: 'about' },
 ];
