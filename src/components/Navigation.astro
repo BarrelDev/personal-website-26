@@ -21,6 +21,7 @@ const currentPath = Astro.url.pathname;
 						<li>
 							<a
 								href={link.href}
+								data-nav-link
 								class={`px-3 py-2 rounded-lg transition-all hover:bg-brand-blue/10 hover:text-brand-blue ${
 									currentPath === link.href
 										? 'text-brand-blue font-semibold border-b-2 border-brand-blue'
@@ -107,6 +108,7 @@ const currentPath = Astro.url.pathname;
 						<li>
 							<a
 								href={link.href}
+								data-nav-link-mobile
 								class={`block px-4 py-2 rounded-lg transition-all hover:bg-brand-blue/10 hover:text-brand-blue ${
 									currentPath === link.href
 										? 'bg-brand-blue/20 text-brand-blue font-semibold'
@@ -166,15 +168,45 @@ const currentPath = Astro.url.pathname;
 		document.getElementById('search-trigger-mobile')?.addEventListener('click', openSearch);
 	}
 
+	// Update active nav link to match current URL
+	function updateActiveLink() {
+		const path = window.location.pathname;
+		document.querySelectorAll('[data-nav-link]').forEach((link) => {
+			const href = link.getAttribute('href') || '';
+			const isActive = href === '/' ? path === '/' : path.startsWith(href);
+			if (isActive) {
+				link.classList.add('text-brand-blue', 'font-semibold', 'border-b-2', 'border-brand-blue');
+				link.classList.remove('dark:text-gray-300');
+			} else {
+				link.classList.remove('text-brand-blue', 'font-semibold', 'border-b-2', 'border-brand-blue');
+				link.classList.add('dark:text-gray-300');
+			}
+		});
+		// Also update mobile menu links
+		document.querySelectorAll('[data-nav-link-mobile]').forEach((link) => {
+			const href = link.getAttribute('href') || '';
+			const isActive = href === '/' ? path === '/' : path.startsWith(href);
+			if (isActive) {
+				link.classList.add('bg-brand-blue/20', 'text-brand-blue', 'font-semibold');
+				link.classList.remove('dark:text-gray-300');
+			} else {
+				link.classList.remove('bg-brand-blue/20', 'text-brand-blue', 'font-semibold');
+				link.classList.add('dark:text-gray-300');
+			}
+		});
+	}
+
 	// Initialize on page load
 	setupThemeToggle();
 	setupMobileMenu();
 	setupSearchTriggers();
+	updateActiveLink();
 
 	// Re-initialize after page transitions
 	document.addEventListener('astro:page-load', () => {
 		setupThemeToggle();
 		setupMobileMenu();
 		setupSearchTriggers();
+		updateActiveLink();
 	});
 </script>

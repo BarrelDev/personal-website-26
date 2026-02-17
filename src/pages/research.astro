@@ -29,7 +29,7 @@ const sortedPubs = publications.sort((a, b) => b.data.date.getTime() - a.data.da
 			<div class="max-w-4xl mx-auto space-y-8">
 				{
 					sortedPubs.map((pub) => (
-						<PublicationCard
+						<div data-reveal><PublicationCard
 							title={pub.data.title}
 							authors={pub.data.authors}
 							venue={pub.data.venue}
@@ -38,7 +38,7 @@ const sortedPubs = publications.sort((a, b) => b.data.date.getTime() - a.data.da
 							pdf={pub.data.pdf}
 							doi={pub.data.doi}
 							citation={pub.data.citation}
-						/>
+						/></div>
 					))
 				}
 			</div>
@@ -57,30 +57,30 @@ const sortedPubs = publications.sort((a, b) => b.data.date.getTime() - a.data.da
 	<section class="py-16 bg-gray-50 dark:bg-dark-bg/50">
 		<div class="container mx-auto px-4">
 			<div class="max-w-4xl mx-auto">
-				<h2 class="text-3xl font-bold dark:text-white mb-8 text-center">Research Interests</h2>
+				<h2 class="text-3xl font-bold dark:text-white mb-8 text-center" data-reveal>Research Interests</h2>
 				<div class="grid md:grid-cols-2 gap-6">
-					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="1">
 						<h3 class="text-xl font-bold dark:text-white mb-3">Pathfinding Algorithms</h3>
 						<p class="text-gray-600 dark:text-gray-400">
 							Developing efficient 3D voxel-based pathfinding algorithms for dynamic environments
 							with variable movement speeds.
 						</p>
 					</div>
-					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="2">
 						<h3 class="text-xl font-bold dark:text-white mb-3">Autonomous Systems</h3>
 						<p class="text-gray-600 dark:text-gray-400">
 							Path planning and control systems for driverless racing vehicles using SLAM and
 							trajectory optimization.
 						</p>
 					</div>
-					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="3">
 						<h3 class="text-xl font-bold dark:text-white mb-3">Machine Learning</h3>
 						<p class="text-gray-600 dark:text-gray-400">
 							Vision Transformers and neural networks for image classification and computer vision
 							tasks.
 						</p>
 					</div>
-					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="4">
 						<h3 class="text-xl font-bold dark:text-white mb-3">Robotics Software</h3>
 						<p class="text-gray-600 dark:text-gray-400">
 							Real-time control systems and trajectory planning for competitive FIRST Robotics

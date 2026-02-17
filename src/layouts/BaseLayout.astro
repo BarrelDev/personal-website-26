@@ -35,11 +35,36 @@ const { title, description, image } = Astro.props;
 			const theme = localStorage.getItem('theme') || 'dark';
 			document.documentElement.classList.toggle('dark', theme === 'dark');
 		</script>
+
+		<!-- Scroll reveal observer -->
+		<script>
+			function initScrollReveal() {
+				const els = document.querySelectorAll('[data-reveal]');
+				if (!els.length) return;
+
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add('revealed');
+								observer.unobserve(entry.target);
+							}
+						});
+					},
+					{ threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
+				);
+
+				els.forEach((el) => observer.observe(el));
+			}
+
+			initScrollReveal();
+			document.addEventListener('astro:page-load', initScrollReveal);
+		</script>
 	</body>
 </html>
 
 <style is:global>
-	/* Initial page load fade-in (plays once on first visit / hard refresh) */
+	/* Initial page load fade-in */
 	@keyframes page-fade-in {
 		from {
 			opacity: 0;
@@ -79,4 +104,25 @@ const { title, description, image } = Astro.props;
 			opacity: 1;
 		}
 	}
+
+	/* Scroll reveal animations */
+	[data-reveal] {
+		opacity: 0;
+		transform: translateY(24px);
+		transition:
+			opacity 0.6s ease-out,
+			transform 0.6s ease-out;
+	}
+
+	[data-reveal].revealed {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	/* Stagger children: each successive item delays slightly */
+	[data-reveal-delay='1'] { transition-delay: 0.1s; }
+	[data-reveal-delay='2'] { transition-delay: 0.2s; }
+	[data-reveal-delay='3'] { transition-delay: 0.3s; }
+	[data-reveal-delay='4'] { transition-delay: 0.4s; }
+	[data-reveal-delay='5'] { transition-delay: 0.5s; }
 </style>

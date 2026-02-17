@@ -39,11 +39,11 @@ const experiences = await getCollection('experience');
 	<!-- Education -->
 	<section class="py-16">
 		<div class="container mx-auto px-4">
-			<h2 class="text-3xl font-bold dark:text-white mb-8">Education</h2>
+			<h2 class="text-3xl font-bold dark:text-white mb-8" data-reveal>Education</h2>
 			<div class="space-y-6 max-w-4xl">
 				{
-					profileData.education.map((edu) => (
-						<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-800">
+					profileData.education.map((edu, i) => (
+						<div data-reveal data-reveal-delay={(i + 1).toString()} class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-800">
 							<div class="flex flex-col sm:flex-row justify-between items-start gap-2">
 								<div>
 									<h3 class="text-xl font-bold dark:text-white">{edu.institution}</h3>
@@ -64,8 +64,8 @@ const experiences = await getCollection('experience');
 	<!-- Experience Timeline -->
 	<section class="py-16 bg-gray-50 dark:bg-dark-bg/50">
 		<div class="container mx-auto px-4">
-			<h2 class="text-3xl font-bold dark:text-white mb-12">Professional Experience</h2>
-			<div class="max-w-4xl">
+			<h2 class="text-3xl font-bold dark:text-white mb-12" data-reveal>Professional Experience</h2>
+			<div class="max-w-4xl" data-reveal>
 				<ExperienceTimeline experiences={experiences} />
 			</div>
 		</div>
@@ -74,11 +74,11 @@ const experiences = await getCollection('experience');
 	<!-- Skills -->
 	<section class="py-16">
 		<div class="container mx-auto px-4">
-			<h2 class="text-3xl font-bold dark:text-white mb-8">Technical Skills</h2>
+			<h2 class="text-3xl font-bold dark:text-white mb-8" data-reveal>Technical Skills</h2>
 
 			<div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 				<!-- Programming Languages -->
-				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="1">
 					<h3 class="text-xl font-bold dark:text-white mb-4">Programming Languages</h3>
 					<div class="flex flex-wrap gap-2">
 						{
@@ -92,7 +92,7 @@ const experiences = await getCollection('experience');
 				</div>
 
 				<!-- Technologies & Frameworks -->
-				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="2">
 					<h3 class="text-xl font-bold dark:text-white mb-4">Technologies & Frameworks</h3>
 					<div class="flex flex-wrap gap-2">
 						{
@@ -106,7 +106,7 @@ const experiences = await getCollection('experience');
 				</div>
 
 				<!-- Frontend -->
-				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="1">
 					<h3 class="text-xl font-bold dark:text-white mb-4">Frontend Development</h3>
 					<div class="flex flex-wrap gap-2">
 						{
@@ -120,7 +120,7 @@ const experiences = await getCollection('experience');
 				</div>
 
 				<!-- Backend -->
-				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="2">
 					<h3 class="text-xl font-bold dark:text-white mb-4">Backend Development</h3>
 					<div class="flex flex-wrap gap-2">
 						{
@@ -134,7 +134,7 @@ const experiences = await getCollection('experience');
 				</div>
 
 				<!-- Robotics -->
-				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="1">
 					<h3 class="text-xl font-bold dark:text-white mb-4">Robotics</h3>
 					<div class="flex flex-wrap gap-2">
 						{
@@ -148,7 +148,7 @@ const experiences = await getCollection('experience');
 				</div>
 
 				<!-- ML -->
-				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg">
+				<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg" data-reveal data-reveal-delay="2">
 					<h3 class="text-xl font-bold dark:text-white mb-4">Machine Learning</h3>
 					<div class="flex flex-wrap gap-2">
 						{

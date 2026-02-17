@@ -30,7 +30,7 @@ const categories = ['all', ...new Set(projects.map((p) => p.data.category))];
 	<section class="py-16">
 		<div class="container mx-auto px-4">
 			<!-- Category Filters -->
-			<div class="flex flex-wrap justify-center gap-3 mb-12">
+			<div class="flex flex-wrap justify-center gap-3 mb-12" data-reveal>
 				{
 					categories.map((category) => (
 						<button
@@ -48,8 +48,8 @@ const categories = ['all', ...new Set(projects.map((p) => p.data.category))];
 			<!-- Projects Grid -->
 			<div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 				{
-					sortedProjects.map((project) => (
-						<div class="project-item" data-category={project.data.category}>
+					sortedProjects.map((project, i) => (
+						<div class="project-item" data-category={project.data.category} data-reveal data-reveal-delay={((i % 3) + 1).toString()}>
 							<ProjectCard
 								title={project.data.title}
 								description={project.data.description}
