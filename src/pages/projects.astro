@@ -32,7 +32,7 @@ const categories = ['all', ...new Set(projects.map((p) => p.data.category))];
 					categories.map((category) => (
 						<button
 							class="filter-btn px-6 py-2 rounded-full border-2 transition-all capitalize
-                   hover:border-brand-blue hover:text-brand-blue dark:border-gray-700 dark:text-gray-300"
+                   hover:border-brand-blue hover:text-brand-blue dark:border-dark-border dark:text-gray-300"
 							data-filter={category}
 							data-active={category === 'all' ? 'true' : 'false'}
 						>

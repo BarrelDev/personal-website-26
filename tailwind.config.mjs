@@ -1,19 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-	darkMode: 'class', // Enable class-based dark mode
+	darkMode: 'class',
 	theme: {
 		extend: {
 			colors: {
-				// Preserve old site colors
-				'brand-blue': '#1e90ff', // dodger blue
-				'brand-blue-light': '#00bfff', // deep sky blue
-				'brand-accent': '#2337ff', // Current Astro accent
-				'dark-bg': '#0f1419', // Dark background
-				'dark-card': '#1a1f2e', // Card background
+				'brand-blue': '#1e90ff',
+				'brand-blue-light': '#00bfff',
+				'brand-accent': '#2337ff',
+				// Claude console-inspired warm grays
+				'dark-bg': '#191919',
+				'dark-card': '#262626',
+				'dark-border': '#333333',
+				'dark-surface': '#2f2f2f',
 			},
 			fontFamily: {
-				atkinson: ['Atkinson', 'sans-serif'],
+				mono: ['"JetBrains Mono"', '"Fira Code"', '"SF Mono"', 'Menlo', 'Consolas', 'monospace'],
 			},
 			animation: {
 				'fade-in': 'fadeIn 0.5s ease-in',

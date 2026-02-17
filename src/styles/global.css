@@ -26,36 +26,23 @@
 	display: none; /* Chrome, Safari */
 }
 
-/* Dark mode variables */
+/* Dark mode variables — Claude console-inspired warm grays */
 .dark {
-	--bg-primary: #0f1419;
-	--bg-secondary: #1a1f2e;
-	--text-primary: #e4e6eb;
-	--text-secondary: #b0b3b8;
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+	--bg-primary: #191919;
+	--bg-secondary: #262626;
+	--text-primary: #ececec;
+	--text-secondary: #a0a0a0;
 }
 body {
-	font-family: "Atkinson", sans-serif;
+	font-family: "JetBrains Mono", "Fira Code", "SF Mono", Menlo, Consolas, monospace;
 	margin: 0;
 	padding: 0;
 	text-align: left;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 1.7;
+	letter-spacing: -0.01em;
 }
 h1,
 h2,

@@ -11,7 +11,7 @@ const experiences = await getCollection('experience');
 <BaseLayout title="CV | Visvam Rajesh" description="Curriculum Vitae - Experience, education, and skills.">
 	<!-- Header with Download Button -->
 	<section
-		class="py-5 pt-10"
+		class="pt-10"
 	>
 		<div class="container mx-auto px-4 text-center">
 			<!-- <h1 class="text-5xl font-bold dark:text-white mb-4">Curriculum Vitae</h1> -->
@@ -34,13 +34,13 @@ const experiences = await getCollection('experience');
 	</section>
 
 	<!-- Education -->
-	<section class="py-15">
+	<section class="pt-10 py-20">
 		<div class="container mx-auto px-4">
 			<h2 class="text-3xl font-bold dark:text-white mb-8" data-reveal>Education</h2>
 			<div class="space-y-6 max-w-4xl">
 				{
 					profileData.education.map((edu, i) => (
-						<div data-reveal data-reveal-delay={(i + 1).toString()} class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-800">
+						<div data-reveal data-reveal-delay={(i + 1).toString()} class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg border border-gray-200 dark:border-dark-border">
 							<div class="flex flex-col sm:flex-row justify-between items-start gap-2">
 								<div>
 									<h3 class="text-xl font-bold dark:text-white">{edu.institution}</h3>
@@ -59,7 +59,7 @@ const experiences = await getCollection('experience');
 	</section>
 
 	<!-- Experience Timeline -->
-	<section class="py-16 bg-gray-50 dark:bg-dark-bg/50">
+	<section class="py-16 bg-gray-50 dark:bg-dark-card/50">
 		<div class="container mx-auto px-4">
 			<h2 class="text-3xl font-bold dark:text-white mb-12" data-reveal>Professional Experience</h2>
 			<div class="max-w-4xl" data-reveal>
@@ -166,7 +166,7 @@ const experiences = await getCollection('experience');
 					<div class="flex flex-wrap gap-3">
 						{
 							skillsData.human_languages.map((lang) => (
-								<span class="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-gray-700 dark:text-gray-300">
+								<span class="px-4 py-2 bg-gray-100 dark:bg-dark-surface rounded-lg text-gray-700 dark:text-gray-300">
 									{lang}
 								</span>
 							))

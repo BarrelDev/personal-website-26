@@ -6,7 +6,7 @@ import logo from '../assets/logos/vr-logo-transparent.png';
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 bg-white/80 dark:bg-dark-card/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors">
+<header class="sticky top-0 z-50 bg-gray-50/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-gray-200 dark:border-dark-border transition-colors">
 	<nav class="container mx-auto px-4 py-4">
 		<div class="flex items-center justify-between">
 			<!-- Logo -->
@@ -39,7 +39,7 @@ const currentPath = Astro.url.pathname;
 			<div class="hidden md:flex items-center gap-2">
 				<button
 					id="search-trigger"
-					class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-sm text-gray-500 dark:text-gray-400"
+					class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-200 dark:bg-dark-surface hover:bg-gray-300 dark:hover:bg-dark-border transition-colors text-sm text-gray-500 dark:text-gray-400"
 					aria-label="Search"
 				>
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,7 +50,7 @@ const currentPath = Astro.url.pathname;
 				</button>
 			<button
 				id="theme-toggle"
-				class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+				class="p-2 rounded-lg bg-gray-200 dark:bg-dark-surface hover:bg-gray-300 dark:hover:bg-dark-border transition-colors"
 				aria-label="Toggle dark mode"
 			>
 				<svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
@@ -68,7 +68,7 @@ const currentPath = Astro.url.pathname;
 			<div class="flex md:hidden items-center gap-2">
 				<button
 					id="search-trigger-mobile"
-					class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+					class="p-2 rounded-lg bg-gray-200 dark:bg-dark-surface hover:bg-gray-300 dark:hover:bg-dark-border transition-colors"
 					aria-label="Search"
 				>
 					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,7 +77,7 @@ const currentPath = Astro.url.pathname;
 				</button>
 				<button
 					id="theme-toggle-mobile"
-					class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+					class="p-2 rounded-lg bg-gray-200 dark:bg-dark-surface hover:bg-gray-300 dark:hover:bg-dark-border transition-colors"
 					aria-label="Toggle dark mode"
 				>
 					<svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">

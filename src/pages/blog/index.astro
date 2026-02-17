@@ -27,7 +27,7 @@ const posts = (await getCollection('blog')).sort(
 					posts.map((post) => (
 						<a
 							href={`/blog/${post.id}/`}
-							class="group bg-white dark:bg-dark-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-gray-200 dark:border-gray-800"
+							class="group bg-white dark:bg-dark-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-gray-200 dark:border-dark-border"
 						>
 							{post.data.heroImage && (
 								<div class="h-48 overflow-hidden">

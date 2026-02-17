@@ -25,7 +25,7 @@ const currentExperiences = experiences.filter((e) => e.data.current);
 	<Hero />
 
 	<!-- Featured Projects Section -->
-	<section class="py-20 bg-gray-50 dark:bg-dark-bg/50">
+	<section class="py-20 bg-gray-50 dark:bg-dark-card/50">
 		<div class="container mx-auto px-4">
 			<div class="text-center mb-12" data-reveal>
 				<h2 class="text-4xl font-bold dark:text-white mb-4">Featured Projects</h2>
@@ -102,7 +102,7 @@ const currentExperiences = experiences.filter((e) => e.data.current);
 	<!-- Current Activities Section -->
 	{
 		currentExperiences.length > 0 && (
-			<section class="py-20 bg-gray-50 dark:bg-dark-bg/50">
+			<section class="py-20 bg-gray-50 dark:bg-dark-card/50">
 				<div class="container mx-auto px-4">
 					<div class="text-center mb-12" data-reveal>
 						<h2 class="text-4xl font-bold dark:text-white mb-4">What I'm Doing Now</h2>
@@ -110,14 +110,14 @@ const currentExperiences = experiences.filter((e) => e.data.current);
 
 					<div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 						{currentExperiences.map((exp, i) => (
-							<div data-reveal data-reveal-delay={i + 1} class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-800">
+							<div data-reveal data-reveal-delay={i + 1} class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg border border-gray-200 dark:border-dark-border">
 								<h3 class="text-xl font-bold dark:text-white mb-2">{exp.data.title}</h3>
 								<p class="text-brand-blue font-semibold mb-3">{exp.data.organization}</p>
 								<p class="text-gray-600 dark:text-gray-400 text-sm">{exp.data.description}</p>
 								{exp.data.tech && (
 									<div class="flex flex-wrap gap-2 mt-4">
 										{exp.data.tech.map((t) => (
-											<span class="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-800 rounded text-gray-600 dark:text-gray-400">
+											<span class="px-2 py-1 text-xs bg-gray-100 dark:bg-dark-surface rounded text-gray-600 dark:text-gray-400">
 												{t}
 											</span>
 										))}
