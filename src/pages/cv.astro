@@ -4,6 +4,7 @@ import ExperienceTimeline from '../components/ExperienceTimeline.astro';
 import { getCollection } from 'astro:content';
 import profileData from '../data/profile.json';
 import skillsData from '../data/skills.json';
+import { PAGES } from '../consts';
 
 const experiences = await getCollection('experience');
 
@@ -16,7 +17,7 @@ const sections = [
 ];
 ---
 
-<BaseLayout title="CV | Visvam Rajesh" description="Curriculum Vitae - Experience, education, and skills.">
+<BaseLayout title={PAGES.cv.title} description={PAGES.cv.description}>
 	<!-- Sidebar Progress Nav -->
 	<nav
 		id="cv-sidebar"

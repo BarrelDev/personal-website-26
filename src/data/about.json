@@ -1,0 +1,26 @@
+{
+  "quickFacts": [
+    { "value": "10+", "label": "Projects Completed" },
+    { "value": "1", "label": "Published Paper" },
+    { "value": "4+", "label": "Years in Robotics" }
+  ],
+  "journeyHighlights": [
+    {
+      "date": "2025 - Now",
+      "description": "Started at Carnegie Mellon University, joined ScottyLabs and CMR"
+    },
+    {
+      "date": "2024",
+      "description": "Published research paper at IEEE IPCCC, interned at Visra Solutions"
+    },
+    {
+      "date": "2021 - 2025",
+      "description": "Led FRC Team 3637 as President, competed at World Championship"
+    },
+    {
+      "date": "2020",
+      "description": "Created Pandemic Inc. for Congressional App Challenge"
+    }
+  ],
+  "journeyHeading": "Journey Highlights"
+}

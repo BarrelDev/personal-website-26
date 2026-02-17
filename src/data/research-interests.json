@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Pathfinding Algorithms",
+    "description": "Developing efficient 3D voxel-based pathfinding algorithms for dynamic environments with variable movement speeds."
+  },
+  {
+    "title": "Autonomous Systems",
+    "description": "Path planning and control systems for driverless racing vehicles using SLAM and trajectory optimization."
+  },
+  {
+    "title": "Machine Learning",
+    "description": "Vision Transformers and neural networks for image classification and computer vision tasks."
+  },
+  {
+    "title": "Robotics Software",
+    "description": "Real-time control systems and trajectory planning for competitive FIRST Robotics Competition robots."
+  }
+]

@@ -20,3 +20,59 @@ export const NAV_LINKS = [
 	{ href: '/blog', label: 'blog' },
 	{ href: '/about', label: 'about' },
 ];
+
+// Page metadata
+export const PAGES = {
+	projects: {
+		title: 'Projects | Visvam Rajesh',
+		description: 'A collection of my software development, robotics, and machine learning projects.',
+		heading: 'my projects',
+		subheading:
+			'A collection of software projects spanning robotics, machine learning, web development, and game design.',
+	},
+	research: {
+		title: 'Research | Visvam Rajesh',
+		description: 'Publications and research in pathfinding algorithms and robotics.',
+		heading: 'research & publications',
+		subheading: 'My research focuses on pathfinding algorithms and autonomous systems.',
+	},
+	cv: {
+		title: 'CV | Visvam Rajesh',
+		description: 'Curriculum Vitae - Experience, education, and skills.',
+	},
+	about: {
+		title: 'About | Visvam Rajesh',
+		description: 'Learn more about Visvam Rajesh - student, developer, and robotics enthusiast.',
+	},
+	blog: {
+		title: 'Blog | Visvam Rajesh',
+		description: 'Thoughts on software development, robotics, and research.',
+	},
+};
+
+// Homepage section content
+export const HOME_SECTIONS = {
+	featuredProjects: {
+		heading: 'Featured Projects',
+		subheading:
+			'Here are some of my recent projects spanning robotics, machine learning, and software development.',
+		cta: 'View All Projects',
+	},
+	latestResearch: {
+		heading: 'Latest Research',
+		subheading: 'My recent publication in pathfinding algorithms',
+		cta: 'View Research Page',
+	},
+	currentActivities: {
+		heading: "What I'm Doing Now",
+	},
+};
+
+// Hero section content
+export const HERO = {
+	greeting: "Hi, I'm",
+	intro: "I'm a",
+	ctaProjects: 'View Projects',
+	ctaResume: 'Download Resume',
+	ctaContact: 'Get in Touch',
+};

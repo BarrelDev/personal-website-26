@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import profileImg from '../assets/profile/profile-main.jpg';
 import profileData from '../data/profile.json';
-import { SOCIAL_LINKS } from '../consts';
+import { SOCIAL_LINKS, HERO } from '../consts';
 ---
 
 <section class="relative min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
@@ -18,11 +18,11 @@ import { SOCIAL_LINKS } from '../consts';
 			<!-- Text Content -->
 			<div class="space-y-6 animate-fade-up">
 				<h1 class="text-5xl md:text-6xl font-bold dark:text-white">
-					Hi, I'm <span class="text-brand-blue">{profileData.name}</span>
+					{HERO.greeting} <span class="text-brand-blue">{profileData.name}</span>
 				</h1>
 
 				<div class="text-2xl md:text-3xl dark:text-gray-300">
-					I'm a <span id="typed-text" class="text-brand-blue font-semibold"></span><span
+					{HERO.intro} <span id="typed-text" class="text-brand-blue font-semibold"></span><span
 						id="typed-cursor"
 						class="text-brand-blue animate-pulse">|</span
 					>
@@ -38,14 +38,14 @@ import { SOCIAL_LINKS } from '../consts';
 						href="/projects"
 						class="px-6 py-3 bg-brand-blue text-white rounded-lg hover:bg-brand-blue-light transition-all hover:scale-105 shadow-lg"
 					>
-						View Projects
+						{HERO.ctaProjects}
 					</a>
 					<a
 						href="/docs/visvam-rajesh-resume.pdf"
 						download
 						class="px-6 py-3 border-2 border-brand-blue text-brand-blue rounded-lg hover:bg-brand-blue hover:text-white transition-all"
 					>
-						Download Resume
+						{HERO.ctaResume}
 					</a>
 				</div>
 
@@ -125,6 +125,11 @@ import { SOCIAL_LINKS } from '../consts';
 	</div>
 </section>
 
+<!-- Pass roles to client -->
+<script is:inline define:vars={{ roles: profileData.roles }}>
+	window.__typedRoles = roles;
+</script>
+
 <!-- Typed.js initialization -->
 <script>
 	import Typed from 'typed.js';
@@ -148,15 +153,10 @@ import { SOCIAL_LINKS } from '../consts';
 		// Clear any leftover content/cursors from previous instances
 		el.textContent = '';
 
+		const roles = (window as any).__typedRoles || ['Developer'];
+
 		typedInstance = new Typed('#typed-text', {
-			strings: [
-				'Developer',
-				'Robotics Programmer',
-				'CMU Student',
-				'Researcher',
-				'Engineer',
-				'Software Developer',
-			],
+			strings: roles,
 			typeSpeed: 50,
 			backSpeed: 30,
 			backDelay: 2000,

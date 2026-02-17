@@ -4,7 +4,7 @@ import Hero from '../components/Hero.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import PublicationCard from '../components/PublicationCard.astro';
 import { getCollection } from 'astro:content';
-import { SITE_TITLE, SITE_DESCRIPTION, SOCIAL_LINKS } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, HOME_SECTIONS } from '../consts';
 
 // Fetch content
 const projects = await getCollection('projects');
@@ -25,12 +25,12 @@ const currentExperiences = experiences.filter((e) => e.data.current);
 	<Hero />
 
 	<!-- Featured Projects Section -->
-	<section class="py-20 bg-gray-50 dark:bg-dark-card/50">
+	<section class="py-10 bg-gray-50 dark:bg-dark-card/50">
 		<div class="container mx-auto px-4">
 			<div class="text-center mb-12" data-reveal>
-				<h2 class="text-4xl font-bold dark:text-white mb-4">Featured Projects</h2>
+				<h2 class="text-4xl font-bold dark:text-white mb-4">{HOME_SECTIONS.featuredProjects.heading}</h2>
 				<p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-					Here are some of my recent projects spanning robotics, machine learning, and software development.
+					{HOME_SECTIONS.featuredProjects.subheading}
 				</p>
 			</div>
 
@@ -58,7 +58,7 @@ const currentExperiences = experiences.filter((e) => e.data.current);
 					href="/projects"
 					class="inline-block px-8 py-3 bg-brand-blue text-white rounded-lg hover:bg-brand-blue-light transition-all hover:scale-105 shadow-lg"
 				>
-					View All Projects &rarr;
+					{HOME_SECTIONS.featuredProjects.cta} &rarr;
 				</a>
 			</div>
 		</div>
@@ -67,13 +67,13 @@ const currentExperiences = experiences.filter((e) => e.data.current);
 	<!-- Latest Publication Section -->
 	{
 		latestPub && (
-			<section class="py-20">
+			<section class="py-10">
 				<div class="container mx-auto px-4">
 					<div class="text-center mb-12" data-reveal>
-						<h2 class="text-4xl font-bold dark:text-white mb-4">Latest Research</h2>
-						<p class="text-gray-600 dark:text-gray-400">
-							My recent publication in pathfinding algorithms
-						</p>
+						<h2 class="text-4xl font-bold dark:text-white mb-4">
+							{HOME_SECTIONS.latestResearch.heading}
+						</h2>
+						<p class="text-gray-600 dark:text-gray-400">{HOME_SECTIONS.latestResearch.subheading}</p>
 					</div>
 
 					<div class="max-w-4xl mx-auto" data-reveal>
@@ -91,7 +91,7 @@ const currentExperiences = experiences.filter((e) => e.data.current);
 
 					<div class="text-center mt-8">
 						<a href="/research" class="inline-block text-brand-blue hover:underline font-semibold">
-							View Research Page &rarr;
+							{HOME_SECTIONS.latestResearch.cta} &rarr;
 						</a>
 					</div>
 				</div>
@@ -102,15 +102,21 @@ const currentExperiences = experiences.filter((e) => e.data.current);
 	<!-- Current Activities Section -->
 	{
 		currentExperiences.length > 0 && (
-			<section class="py-20 bg-gray-50 dark:bg-dark-card/50">
+			<section class="py-10 bg-gray-50 dark:bg-dark-card/50">
 				<div class="container mx-auto px-4">
 					<div class="text-center mb-12" data-reveal>
-						<h2 class="text-4xl font-bold dark:text-white mb-4">What I'm Doing Now</h2>
+						<h2 class="text-4xl font-bold dark:text-white mb-4">
+							{HOME_SECTIONS.currentActivities.heading}
+						</h2>
 					</div>
 
 					<div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 						{currentExperiences.map((exp, i) => (
-							<div data-reveal data-reveal-delay={i + 1} class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg border border-gray-200 dark:border-dark-border">
+							<div
+								data-reveal
+								data-reveal-delay={i + 1}
+								class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg border border-gray-200 dark:border-dark-border"
+							>
 								<h3 class="text-xl font-bold dark:text-white mb-2">{exp.data.title}</h3>
 								<p class="text-brand-blue font-semibold mb-3">{exp.data.organization}</p>
 								<p class="text-gray-600 dark:text-gray-400 text-sm">{exp.data.description}</p>
@@ -130,24 +136,4 @@ const currentExperiences = experiences.filter((e) => e.data.current);
 			</section>
 		)
 	}
-
-	<!-- CTA Section -->
-	<!-- <section class="py-20">
-		<div class="container mx-auto px-4">
-			<div
-				class="max-w-4xl mx-auto text-center bg-gradient-to-r from-brand-blue to-brand-blue-light rounded-2xl p-12 text-white shadow-2xl"
-			>
-				<h2 class="text-3xl md:text-4xl font-bold mb-4">Let's Work Together</h2>
-				<p class="text-xl mb-8 opacity-90">
-					I'm always open to discussing new projects, creative ideas, or opportunities.
-				</p>
-				<a
-					href={`mailto:${SOCIAL_LINKS.email}`}
-					class="inline-block px-8 py-3 bg-white text-brand-blue rounded-lg hover:bg-gray-100 transition-all hover:scale-105 shadow-lg font-semibold"
-				>
-					Get in Touch
-				</a>
-			</div>
-		</div>
-	</section> -->
 </BaseLayout>

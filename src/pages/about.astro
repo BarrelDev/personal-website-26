@@ -2,27 +2,26 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import profileImg from '../assets/profile/profile-main.jpg';
+import profileData from '../data/profile.json';
+import aboutData from '../data/about.json';
+import { PAGES } from '../consts';
+import fs from 'node:fs';
+
+// Read about bio markdown — split into paragraphs for rendering
+const bioMd = fs.readFileSync('src/content/pages/about.md', 'utf-8');
+const bioParagraphs = bioMd.split('\n\n').filter((p) => p.trim());
 ---
 
-<BaseLayout
-	title="About | Visvam Rajesh"
-	description="Learn more about Visvam Rajesh - student, developer, and robotics enthusiast."
->
+<BaseLayout title={PAGES.about.title} description={PAGES.about.description}>
 	<section class="py-20">
 		<div class="container mx-auto px-4">
 			<div class="max-w-4xl mx-auto">
-				<!-- Header -->
-				<!-- <div class="text-center mb-12">
-					<h1 class="text-5xl font-bold dark:text-white mb-4">About Me</h1>
-					<p class="text-xl text-gray-600 dark:text-gray-400">Student, Developer, Robotics Enthusiast</p>
-				</div> -->
-
 				<!-- Profile Image & Bio -->
 				<div class="grid md:grid-cols-5 gap-8 mb-12" data-reveal>
 					<div class="md:col-span-2">
 						<Image
 							src={profileImg}
-							alt="Visvam Rajesh"
+							alt={profileData.name}
 							width={400}
 							height={400}
 							class="rounded-2xl shadow-2xl object-cover aspect-square w-full"
@@ -30,46 +29,24 @@ import profileImg from '../assets/profile/profile-main.jpg';
 					</div>
 
 					<div class="md:col-span-3 space-y-4 text-gray-700 dark:text-gray-300">
-						<p class="text-lg">
-							Hi! I'm Visvam Rajesh, a Computer Science and Robotics student at Carnegie Mellon
-							University. I'm passionate about building intelligent systems that solve real-world
-							problems.
-						</p>
-
-						<p>
-							Currently, I'm working on driverless path-planning systems at Carnegie Mellon Racing
-							and developing backend infrastructure at ScottyLabs. Previously, I led FRC Team 3637
-							as President to the World Championship and conducted research on pathfinding
-							algorithms with Dr. Wu at NJIT.
-						</p>
-
-						<p>
-							My interests span autonomous systems, machine learning, and full-stack development. I
-							enjoy working on challenging problems that require both theoretical understanding and
-							practical implementation.
-						</p>
-
-						<p>
-							When I'm not coding, you can find me working on robotics projects, contributing to
-							open source, or exploring new technologies.
-						</p>
+						{
+							bioParagraphs.map((paragraph, i) => (
+								<p class={i === 0 ? 'text-lg' : ''}>{paragraph}</p>
+							))
+						}
 					</div>
 				</div>
 
 				<!-- Quick Facts -->
 				<div class="grid md:grid-cols-3 gap-6 mb-12" data-reveal>
-					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg text-center">
-						<div class="text-4xl font-bold text-brand-blue mb-2">10+</div>
-						<div class="text-gray-600 dark:text-gray-400">Projects Completed</div>
-					</div>
-					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg text-center">
-						<div class="text-4xl font-bold text-brand-blue mb-2">1</div>
-						<div class="text-gray-600 dark:text-gray-400">Published Paper</div>
-					</div>
-					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg text-center">
-						<div class="text-4xl font-bold text-brand-blue mb-2">4+</div>
-						<div class="text-gray-600 dark:text-gray-400">Years in Robotics</div>
-					</div>
+					{
+						aboutData.quickFacts.map((fact) => (
+							<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg text-center">
+								<div class="text-4xl font-bold text-brand-blue mb-2">{fact.value}</div>
+								<div class="text-gray-600 dark:text-gray-400">{fact.label}</div>
+							</div>
+						))
+					}
 				</div>
 
 				<!-- Journey Highlights -->
@@ -77,32 +54,16 @@ import profileImg from '../assets/profile/profile-main.jpg';
 					class="bg-gradient-to-r from-brand-blue/10 to-brand-blue-light/10 dark:from-brand-blue/5 dark:to-transparent rounded-2xl p-8"
 					data-reveal
 				>
-					<h2 class="text-2xl font-bold dark:text-white mb-6">Journey Highlights</h2>
+					<h2 class="text-2xl font-bold dark:text-white mb-6">{aboutData.journeyHeading}</h2>
 					<div class="space-y-4">
-						<div class="flex gap-4">
-							<div class="text-brand-blue font-bold min-w-[120px]">2025 - Now</div>
-							<div class="dark:text-gray-300">
-								Started at Carnegie Mellon University, joined ScottyLabs and CMR
-							</div>
-						</div>
-						<div class="flex gap-4">
-							<div class="text-brand-blue font-bold min-w-[120px]">2024</div>
-							<div class="dark:text-gray-300">
-								Published research paper at IEEE IPCCC, interned at Visra Solutions
-							</div>
-						</div>
-						<div class="flex gap-4">
-							<div class="text-brand-blue font-bold min-w-[120px]">2021 - 2025</div>
-							<div class="dark:text-gray-300">
-								Led FRC Team 3637 as President, competed at World Championship
-							</div>
-						</div>
-						<div class="flex gap-4">
-							<div class="text-brand-blue font-bold min-w-[120px]">2020</div>
-							<div class="dark:text-gray-300">
-								Created Pandemic Inc. for Congressional App Challenge
-							</div>
-						</div>
+						{
+							aboutData.journeyHighlights.map((item) => (
+								<div class="flex gap-4">
+									<div class="text-brand-blue font-bold min-w-[120px]">{item.date}</div>
+									<div class="dark:text-gray-300">{item.description}</div>
+								</div>
+							))
+						}
 					</div>
 				</div>
 			</div>
