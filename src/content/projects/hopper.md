@@ -4,7 +4,7 @@ description: "The codebase behind Team 3637's 2024 world championship robot, Dal
 category: "robotics"
 tags: ["Robotics", "FRC"]
 date: 2024-04-15
-featured: true
+featured: false 
 github: "https://github.com/FRC-3637-Daleks/Hopper"
 image: "../../assets/projects/hopper.jpg"
 tech: ["C++", "Python", "WPILib"]

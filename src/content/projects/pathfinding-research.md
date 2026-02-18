@@ -7,7 +7,7 @@ date: 2024-12-01
 featured: true
 demo: "https://doi.org/10.1109/IPCCC59868.2024.10850316"
 image: "../../assets/projects/pathfinding-research.png"
-tech: ["Python", "NumPy", "Algorithms"]
+tech: ["Python", "NumPy", "Algorithms", "UE5", "C++"]
 ---
 
 ## Overview

@@ -6,7 +6,7 @@ tags: ["Machine Learning", "Computer Vision"]
 date: 2024-03-15
 featured: true
 github: "https://github.com/BarrelDev/poke-vit"
-image: "../../assets/projects/poke-vit.jpg"
+image: "../../assets/projects/poke-vit.png"
 tech: ["Python", "PyTorch", "Transformers", "Jupyter"]
 ---
 
