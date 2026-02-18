@@ -7,7 +7,8 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'http://visvamrajesh.com',
+	site: 'https://barreldev.github.io',
+	base: '/personal-website-26/',
 	integrations: [
 		mdx(),
 		sitemap(),
