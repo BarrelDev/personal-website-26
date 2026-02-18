@@ -53,26 +53,25 @@ export const PAGES = {
 // Homepage section content
 export const HOME_SECTIONS = {
 	featuredProjects: {
-		heading: 'Featured Projects',
+		heading: 'featured projects',
 		subheading:
-			'Here are some of my recent projects spanning robotics, machine learning, and software development.',
-		cta: 'View All Projects',
+			'here are some of my recent projects spanning robotics, machine learning, and software development.',
+		cta: 'view all projects',
 	},
 	latestResearch: {
-		heading: 'Latest Research',
-		subheading: 'My recent publication in pathfinding algorithms',
-		cta: 'View Research Page',
+		heading: 'latest research',
+		subheading: 'my recent publication in pathfinding algorithms',
+		cta: 'view research page',
 	},
 	currentActivities: {
-		heading: "What I'm Doing Now",
+		heading: "what i'm doing now",
 	},
 };
 
 // Hero section content
 export const HERO = {
-	greeting: "Hi, I'm",
-	intro: "I'm a",
-	ctaProjects: 'View Projects',
-	ctaResume: 'Download Resume',
-	ctaContact: 'Get in Touch',
+	greeting: "hi, i'm",
+	intro: "i'm a",
+	ctaProjects: 'view projects',
+	ctaResume: 'download resume',
 };

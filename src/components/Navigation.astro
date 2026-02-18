@@ -89,23 +89,27 @@ const currentPath = Astro.url.pathname;
 						></path>
 					</svg>
 				</button>
-				<button id="mobile-menu-toggle" class="p-2" aria-label="Toggle menu">
-					<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-						<path
-							fill-rule="evenodd"
-							d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-							clip-rule="evenodd"></path>
-					</svg>
+				<button id="mobile-menu-toggle" class="p-2 relative w-10 h-10" aria-label="Toggle menu">
+					<span class="hamburger-line top-[11px]"></span>
+					<span class="hamburger-line top-[17px]"></span>
+					<span class="hamburger-line top-[23px]"></span>
 				</button>
 			</div>
 		</div>
 
 		<!-- Mobile Menu -->
-		<div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-			<ul class="flex flex-col gap-2">
+		<div
+			id="mobile-menu"
+			class="md:hidden overflow-hidden transition-all duration-300 ease-out"
+			style="max-height: 0; opacity: 0;"
+		>
+			<ul class="flex flex-col gap-1 pt-4 pb-2">
 				{
-					NAV_LINKS.map((link) => (
-						<li>
+					NAV_LINKS.map((link, i) => (
+						<li
+							class="mobile-menu-item"
+							style={`transition-delay: ${i * 40}ms;`}
+						>
 							<a
 								href={link.href}
 								data-nav-link-mobile
@@ -128,26 +132,63 @@ const currentPath = Astro.url.pathname;
 <script>
 	// Dark mode toggle functionality
 	function setupThemeToggle() {
-		const toggle = document.getElementById('theme-toggle');
-		const toggleMobile = document.getElementById('theme-toggle-mobile');
 		const html = document.documentElement;
-
 		const handleToggle = () => {
 			const isDark = html.classList.toggle('dark');
 			localStorage.setItem('theme', isDark ? 'dark' : 'light');
 		};
 
-		toggle?.addEventListener('click', handleToggle);
-		toggleMobile?.addEventListener('click', handleToggle);
+		// Clone and replace to avoid stacking listeners on persisted nav
+		['theme-toggle', 'theme-toggle-mobile'].forEach((id) => {
+			const el = document.getElementById(id);
+			if (!el) return;
+			const fresh = el.cloneNode(true) as HTMLElement;
+			el.parentNode?.replaceChild(fresh, el);
+			fresh.addEventListener('click', handleToggle);
+		});
 	}
 
-	// Mobile menu toggle
+	// Mobile menu toggle with animation
 	function setupMobileMenu() {
 		const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
 		const mobileMenu = document.getElementById('mobile-menu');
+		if (!mobileMenuToggle || !mobileMenu) return;
 
-		mobileMenuToggle?.addEventListener('click', () => {
-			mobileMenu?.classList.toggle('hidden');
+		let isOpen = false;
+
+		function openMenu() {
+			isOpen = true;
+			mobileMenuToggle!.classList.add('menu-open');
+			mobileMenu!.style.maxHeight = mobileMenu!.scrollHeight + 'px';
+			mobileMenu!.style.opacity = '1';
+			// Stagger menu items
+			mobileMenu!.querySelectorAll('.mobile-menu-item').forEach((item) => {
+				(item as HTMLElement).classList.add('revealed');
+			});
+		}
+
+		function closeMenu() {
+			isOpen = false;
+			mobileMenuToggle!.classList.remove('menu-open');
+			mobileMenu!.style.maxHeight = '0';
+			mobileMenu!.style.opacity = '0';
+			mobileMenu!.querySelectorAll('.mobile-menu-item').forEach((item) => {
+				(item as HTMLElement).classList.remove('revealed');
+			});
+		}
+
+		// Clone and replace to strip any existing listeners
+		const freshBtn = mobileMenuToggle.cloneNode(true) as HTMLElement;
+		mobileMenuToggle.parentNode?.replaceChild(freshBtn, mobileMenuToggle);
+
+		freshBtn.addEventListener('click', () => {
+			if (isOpen) closeMenu();
+			else openMenu();
+		});
+
+		// Close mobile menu when a link is clicked
+		mobileMenu.querySelectorAll('a').forEach((link) => {
+			link.addEventListener('click', () => closeMenu());
 		});
 	}
 
@@ -164,8 +205,14 @@ const currentPath = Astro.url.pathname;
 			}
 		};
 
-		document.getElementById('search-trigger')?.addEventListener('click', openSearch);
-		document.getElementById('search-trigger-mobile')?.addEventListener('click', openSearch);
+		// Clone and replace to avoid stacking listeners on persisted nav
+		['search-trigger', 'search-trigger-mobile'].forEach((id) => {
+			const el = document.getElementById(id);
+			if (!el) return;
+			const fresh = el.cloneNode(true) as HTMLElement;
+			el.parentNode?.replaceChild(fresh, el);
+			fresh.addEventListener('click', openSearch);
+		});
 	}
 
 	// Update active nav link to match current URL
@@ -210,3 +257,47 @@ const currentPath = Astro.url.pathname;
 		updateActiveLink();
 	});
 </script>
+
+<style>
+	/* Hamburger lines → X morphing */
+	.hamburger-line {
+		position: absolute;
+		left: 8px;
+		width: 20px;
+		height: 2px;
+		border-radius: 1px;
+		transition:
+			transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+			opacity 0.2s ease,
+			top 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+		@apply bg-gray-700 dark:bg-gray-300;
+	}
+
+	.menu-open .hamburger-line:nth-child(1) {
+		top: 17px;
+		transform: rotate(45deg);
+	}
+
+	.menu-open .hamburger-line:nth-child(2) {
+		opacity: 0;
+	}
+
+	.menu-open .hamburger-line:nth-child(3) {
+		top: 17px;
+		transform: rotate(-45deg);
+	}
+
+	/* Menu items stagger fade in */
+	.mobile-menu-item {
+		opacity: 0;
+		transform: translateX(-12px);
+		transition:
+			opacity 0.25s ease-out,
+			transform 0.25s ease-out;
+	}
+
+	.mobile-menu-item.revealed {
+		opacity: 1;
+		transform: translateX(0);
+	}
+</style>

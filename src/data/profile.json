@@ -1,7 +1,7 @@
 {
-  "name": "Visvam Rajesh",
+  "name": "visvam rajesh",
   "title": "Computer Science & Robotics Student",
-  "bio": "Carnegie Mellon University student passionate about robotics, autonomous systems, and software development.",
+  "bio": "a carnegie mellon university student passionate about robotics, autonomous systems, and software development.",
   "email": "visvamrajesh@outlook.com",
   "location": "Pittsburgh, PA",
   "education": [
@@ -26,11 +26,10 @@
     "email": "visvamrajesh@outlook.com"
   },
   "roles": [
-    "Developer",
-    "Robotics Programmer",
-    "Programming Captain",
-    "Student",
-    "Researcher",
-    "Engineer"
+    "developer",
+    "roboticist",
+    "student",
+    "researcher",
+    "engineer"
   ]
 }
