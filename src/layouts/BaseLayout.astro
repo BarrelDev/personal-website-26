@@ -21,9 +21,9 @@ const { title, description, image } = Astro.props;
 		<ClientRouter />
 	</head>
 	<body class="dark:bg-dark-bg dark:text-gray-200 bg-gray-50 text-gray-900">
-		<header transition:persist="nav">
+		<div transition:persist="nav">
 			<Navigation />
-		</header>
+		</div>
 		<SearchModal />
 		<main class="min-h-screen page-content">
 			<slot />

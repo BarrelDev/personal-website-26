@@ -3,7 +3,7 @@ title: "Poke-ViT"
 description: "A Vision Transformer model trained to classify Pokémon images."
 category: "ml"
 tags: ["Machine Learning", "Computer Vision"]
-date: 2024-03-15
+date: 2026-03-01
 featured: true
 github: "https://github.com/BarrelDev/poke-vit"
 image: "../../assets/projects/poke-vit.png"

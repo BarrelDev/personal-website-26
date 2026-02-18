@@ -1,0 +1,77 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	experiences: CollectionEntry<'volunteering'>[];
+}
+
+const { experiences } = Astro.props;
+
+// Sort by start date (most recent first)
+const sortedExperiences = [...experiences].sort(
+	(a, b) => b.data.startDate.getTime() - a.data.startDate.getTime(),
+);
+
+function formatDate(date: Date) {
+	return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+}
+---
+
+<div class="relative">
+	<!-- Timeline line -->
+	<div
+		class="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-brand-blue to-brand-blue-light"
+	>
+	</div>
+
+	<!-- Timeline items -->
+	<div class="space-y-12">
+		{
+			sortedExperiences.map((exp) => (
+				<article class="relative pl-20 group">
+					{/* Timeline dot */}
+					<div class="absolute left-6 top-2 w-5 h-5 rounded-full bg-brand-blue border-4 border-white dark:border-dark-bg group-hover:scale-125 transition-transform" />
+
+					{/* Content card */}
+					<div class="bg-white dark:bg-dark-card rounded-xl p-6 shadow-lg border border-gray-200 dark:border-dark-border hover:shadow-xl transition-all hover:-translate-y-1">
+						<div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-3">
+							<div class="flex-1">
+								<h3 class="text-xl font-bold dark:text-white group-hover:text-brand-blue transition-colors">
+									{exp.data.title}
+								</h3>
+								<p class="text-lg text-brand-blue font-semibold">{exp.data.organization}</p>
+								{exp.data.location && (
+									<p class="text-sm text-gray-500 dark:text-gray-400">{exp.data.location}</p>
+								)}
+							</div>
+						</div>
+
+						{/* Date range */}
+						<div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-4">
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+								/>
+							</svg>
+							<span>
+								{formatDate(exp.data.startDate)} -{' '}
+								{exp.data.current ? 'Present' : exp.data.endDate ? formatDate(exp.data.endDate) : ''}
+							</span>
+							{exp.data.current && (
+								<span class="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs rounded-full">
+									Current
+								</span>
+							)}
+						</div>
+
+						{/* Description */}
+						<p class="text-gray-700 dark:text-gray-300 mb-4">{exp.data.description}</p>
+					</div>
+				</article>
+			))
+		}
+	</div>
+</div>

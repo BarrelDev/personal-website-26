@@ -65,4 +65,21 @@ const experience = defineCollection({
 		}),
 });
 
-export const collections = { blog, projects, publications, experience };
+const volunteering = defineCollection({
+	loader: glob({ base: './src/content/volunteering', pattern: '**/*.{md,mdx}' }),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			organization: z.string(),
+			location: z.string().optional(),
+			startDate: z.coerce.date(),
+			endDate: z.coerce.date().optional(),
+			current: z.boolean().default(false),
+			description: z.string(),
+			logo: image().optional(),
+			//highlights: z.array(z.string()),
+			//tech: z.array(z.string()).optional(),
+		}),
+});
+
+export const collections = { blog, projects, publications, experience, volunteering };

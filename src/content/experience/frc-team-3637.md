@@ -1,6 +1,6 @@
 ---
-title: "President"
-organization: "The Daleks, FRC Team 3637"
+title: "President (24-25), Programming Captain (23-24)"
+organization: "FIRST Robotics Competition Team 3637, The Daleks"
 location: "Flemington, NJ"
 startDate: 2021-09-01
 endDate: 2025-06-01

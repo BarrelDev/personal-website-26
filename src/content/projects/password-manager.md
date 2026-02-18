@@ -3,7 +3,7 @@ title: "Password Manager"
 description: "A simple, local-first password manager written in Python."
 category: "other"
 tags: ["Utilities", "Python"]
-date: 2023-01-15
+date: 2024-08-16
 featured: true 
 github: "https://github.com/BarrelDev/password-manager"
 image: "../../assets/projects/password-manager.png"

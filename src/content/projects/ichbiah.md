@@ -3,7 +3,7 @@ title: "Ichbiah"
 description: "The codebase behind Team 3637's 2025 robot."
 category: "robotics"
 tags: ["Robotics", "FRC"]
-date: 2025-01-15
+date: 2025-04-15
 featured: false
 github: "https://github.com/FRC-3637-Daleks/Ichbiah"
 image: "../../assets/projects/ichbiah.jpg"

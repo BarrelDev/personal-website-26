@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import VolunteerTimeline from '../components/VolunteerTimeline.astro';
 import { getCollection } from 'astro:content';
 import profileData from '../data/profile.json';
 import skillsData from '../data/skills.json';
 import { PAGES } from '../consts';
 
 const experiences = await getCollection('experience');
+const volunteering = await getCollection('volunteering');
 
 const sections = [
 	{ id: 'download', label: 'download' },
@@ -14,6 +16,7 @@ const sections = [
 	{ id: 'experience', label: 'experience' },
 	{ id: 'skills', label: 'skills' },
 	{ id: 'languages', label: 'languages' },
+	{ id: 'volunteer', label: 'volunteering' },
 ];
 ---
 
@@ -105,7 +108,7 @@ const sections = [
 			</div>
 		</div>
 	</section>
-
+	
 	<!-- Skills -->
 	<section id="skills" class="py-16">
 		<div class="container mx-auto px-4">
@@ -242,6 +245,17 @@ const sections = [
 			</div>
 		</div>
 	</section>
+	
+	<!-- Volunteering Timeline -->
+	<section id="volunteer" class="py-16 bg-gray-50 dark:bg-dark-card/50">
+		<div class="container mx-auto px-4">
+			<h2 class="text-3xl font-bold dark:text-white mb-12" data-reveal>volunteering</h2>
+			<div class="max-w-4xl" data-reveal>
+				<VolunteerTimeline experiences={volunteering} />
+			</div>
+		</div>
+	</section>
+
 </BaseLayout>
 
 <script>
