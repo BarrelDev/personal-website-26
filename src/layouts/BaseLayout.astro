@@ -30,10 +30,16 @@ const { title, description, image } = Astro.props;
 		</main>
 		<Footer />
 
-		<!-- Dark mode initialization script (prevent FOUC) -->
+		<!-- Dark mode initialization — runs on every navigation to keep state consistent -->
 		<script is:inline>
-			const theme = localStorage.getItem('theme') || 'dark';
-			document.documentElement.classList.toggle('dark', theme === 'dark');
+			(function applyTheme() {
+				var theme = localStorage.getItem('theme') || 'dark';
+				document.documentElement.classList.toggle('dark', theme === 'dark');
+			})();
+			document.addEventListener('astro:before-swap', function(e) {
+				var theme = localStorage.getItem('theme') || 'dark';
+				e.newDocument.documentElement.classList.toggle('dark', theme === 'dark');
+			});
 		</script>
 
 		<!-- Scroll reveal observer -->
