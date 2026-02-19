@@ -14,11 +14,11 @@ export const SOCIAL_LINKS = {
 };
 
 export const NAV_LINKS = [
-	{ href: '/personal-website-26/projects', label: 'projects' },
-	{ href: '/personal-website-26/research', label: 'research' },
-	{ href: '/personal-website-26/cv', label: 'cv' },
-	{ href: '/personal-website-26/blog', label: 'blog' },
-	{ href: '/personal-website-26/about', label: 'about' },
+	{ href: '/projects', label: 'projects' },
+	{ href: '/research', label: 'research' },
+	{ href: '/cv', label: 'cv' },
+	{ href: '/blog', label: 'blog' },
+	{ href: '/about', label: 'about' },
 ];
 
 // Page metadata
