@@ -17,7 +17,7 @@
       "degree": "High School Diploma",
       "startDate": "2021",
       "endDate": "2025",
-      "gpa": "4.43/5.00"
+      "gpa": "4.43/4.00"
     }
   ],
   "social": {
@@ -30,6 +30,6 @@
     "roboticist",
     "student",
     "researcher",
-    "engineer"
+    "software engineer"
   ]
 }

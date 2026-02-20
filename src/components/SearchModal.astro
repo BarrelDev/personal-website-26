@@ -305,13 +305,18 @@ const typeColors: Record<string, string> = {
 
 		// Keyboard shortcuts
 		document.addEventListener('keydown', (e) => {
+			if (e.repeat) return;
+			// console.log(e.key, e.metaKey, e.ctrlKey);
 			// Open with Ctrl+K or /
-			if ((e.key === 'k' && (e.metaKey || e.ctrlKey)) || (e.key === '/' && !isInputFocused())) {
+			const checkCtrlK = (e.key.toLowerCase() === 'k') && (e.metaKey || e.ctrlKey);
+			const checkSlash = (e.key === '/' && !isInputFocused());
+
+			if (checkCtrlK || checkSlash) {
 				e.preventDefault();
+				e.stopPropagation();
+
 				if (modal.classList.contains('hidden')) {
 					openModal();
-				} else {
-					closeModal();
 				}
 				return;
 			}
@@ -344,7 +349,7 @@ const typeColors: Record<string, string> = {
 					closeModal();
 				}
 			}
-		});
+		}, { capture: true });
 
 		// Close on backdrop click
 		backdrop?.addEventListener('click', closeModal);
