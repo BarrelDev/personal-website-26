@@ -2,8 +2,8 @@
 title: "President (24-25), Programming Captain (23-24)"
 organization: "FIRST Robotics Competition Team 3637, The Daleks"
 location: "Flemington, NJ"
-startDate: 2021-09-01
-endDate: 2025-06-01
+startDate: 2021-10-01
+endDate: 2025-07-01
 current: false
 description: "Led a competitive robotics team through design, build, and programming of competition robots."
 highlights:
