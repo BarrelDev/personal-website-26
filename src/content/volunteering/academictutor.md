@@ -5,7 +5,6 @@ location: "Flemington, NJ"
 startDate: 2023-10-01
 endDate: 2025-07-01
 current: false
-description: "Been able to mentor a FIRST LEGO League Challenge team and they were able to reach and win awards at the state level."
+description: "Tutored many students in Algebra I & II, Geometry, Pre-Calculus, Calculus, and Computer Science on a weekly basis. Prepared student-centered materials, assisted with homework, and monitored individual student progress. I'm also a member of the Math Honor Society at our school, responsible for teaching other students and competing in math competitions."
 ---
-
 
