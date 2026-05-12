@@ -1,5 +1,7 @@
 # visvamrajesh.com
 
+[![deployed to site](https://github.com/BarrelDev/personal-website-26/actions/workflows/deploy.yml/badge.svg)](https://github.com/BarrelDev/personal-website-26/actions/workflows/deploy.yml)
+
 Personal portfolio site built with Astro, Tailwind CSS, and JetBrains Mono. Dark theme with Claude-console-inspired warm grays, scroll animations, page transitions, and Ctrl+K search.
 
 ## Quick Start
