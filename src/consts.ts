@@ -44,10 +44,10 @@ export const PAGES = {
 		title: 'About | Visvam Rajesh',
 		description: 'Learn more about Visvam Rajesh - student, developer, and robotics enthusiast.',
 	},
-	blog: {
-		title: 'Blog | Visvam Rajesh',
-		description: 'Thoughts on software development, robotics, and research.',
-	},
+	// blog: {
+	// 	title: 'Blog | Visvam Rajesh',
+	// 	description: 'Thoughts on software development, robotics, and research.',
+	// },
 };
 
 // Homepage section content

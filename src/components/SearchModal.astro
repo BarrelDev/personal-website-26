@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 const projects = await getCollection('projects');
 const publications = await getCollection('publications');
 const experiences = await getCollection('experience');
-const blogPosts = await getCollection('blog');
+// const blogPosts = await getCollection('blog');
 
 const searchIndex = [
 	...projects.map((p) => ({
@@ -32,28 +32,28 @@ const searchIndex = [
 		type: 'experience' as const,
 		url: '/cv',
 	})),
-	...blogPosts.map((b) => ({
-		title: b.data.title,
-		description: b.data.description,
-		tags: '',
-		category: 'blog',
-		type: 'blog' as const,
-		url: `/blog/${b.id}/`,
-	})),
+	// ...blogPosts.map((b) => ({
+	// 	title: b.data.title,
+	// 	description: b.data.description,
+	// 	tags: '',
+	// 	category: 'blog',
+	// 	type: 'blog' as const,
+	// 	url: `/blog/${b.id}/`,
+	// })),
 ];
 
 const typeIcons: Record<string, string> = {
 	project: 'P',
 	publication: 'R',
 	experience: 'E',
-	blog: 'B',
+	// blog: 'B',
 };
 
 const typeColors: Record<string, string> = {
 	project: 'bg-purple-500/20 text-purple-400',
 	publication: 'bg-cyan-500/20 text-cyan-400',
 	experience: 'bg-green-500/20 text-green-400',
-	blog: 'bg-orange-500/20 text-orange-400',
+	// blog: 'bg-orange-500/20 text-orange-400',
 };
 ---
 
@@ -127,13 +127,13 @@ const typeColors: Record<string, string> = {
 				>
 					<span class="text-sm">CV</span>
 				</a>
-				<a
+				<!-- <a
 					href="/blog"
 					class="search-result flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
 					data-index="4"
 				>
 					<span class="text-sm">Blog</span>
-				</a>
+				</a> -->
 				<a
 					href="/about"
 					class="search-result flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
