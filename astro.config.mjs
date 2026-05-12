@@ -9,6 +9,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
 	site: 'https://visvamrajesh.com',
 	base: '/',
+	prefetch: true,
 	integrations: [
 		mdx(),
 		sitemap(),
