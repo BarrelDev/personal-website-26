@@ -21,6 +21,9 @@ const currentExperiences = experiences.filter((e) => e.data.current);
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<!-- Hero gradient background that extends behind navbar -->
+	<div class="fixed top-0 left-0 right-0 pointer-events-none bg-gradient-to-br from-brand-blue/10 via-transparent to-brand-blue-light/10 dark:from-brand-blue/5 dark:to-brand-blue-light/5" style="height: calc(100vh + 73px); z-index: -1;"></div>
+
 	<!-- Hero Section -->
 	<Hero />
 <!-- Current Activities Section -->
