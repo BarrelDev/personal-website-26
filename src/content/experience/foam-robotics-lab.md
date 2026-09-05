@@ -3,7 +3,8 @@ title: "Researcher, Motion Planning Lead"
 organization: "Foam Robotics Lab"
 location: "Pittsburgh, PA"
 startDate: 2026-01-02
-current: true
+endDate: 2026-05-02
+current: false
 description: "Developing dexterous surgical assistant robots for manipulating tissue retractors. Mapping natural-language surgeon commands to safe, constraint-aware trajectories."
 highlights:
   - "Developing URDF models for robot simulation"
